@@ -1,0 +1,9 @@
+// Microsoft Visual C++ generated Help ID include file.
+// Used by PM3394A.rc
+//
+#define HIDC_CONFIG                     0x806603f2    // IDD_PM3394A_DIALOG
+#define HIDC_HELPME                     0x806603ec    // IDD_PM3394A_DIALOG
+#define HIDC_PRINT                      0x806603f6    // IDD_PM3394A_DIALOG
+#define HIDC_READFILE                   0x806603fa    // IDD_PM3394A_DIALOG
+#define HIDC_SAVEFILE                   0x806603fb    // IDD_PM3394A_DIALOG
+#define HIDC_TRIGGER                    0x806603fc    // IDD_PM3394A_DIALOG

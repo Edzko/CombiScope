@@ -1,0 +1,28 @@
+To add or improve:
+
+Context menu on the plot
+Load/Save setups
+Save traces to excel
+Load trace from excel and send it to the scope
+Load memory traces
+plot ylabel (V/mV) 
+trigger point
+Select baudrate
+
+Store settings in Registry
+Select active trace for y-scale and info and cursors 
+Pause/waitbar dialog box when loading data from scope
+Add text annotations ??
+Improve icon bitmaps ??
+
+Cursors should stay at X/Y when window is resizing, and in print --> associate cursor with V/T
+Function keys ??
+Zoomin feature
+Disable zoom button when bitmap hardcopy is downloaded, and re-enable when file is loaded or traces are downloaded
+!! Selecting channels and memories in settings turns them on/off on the scope (not possible)
+buttons for run/stop
+
+Online Help
+
+Setup/Install program
+

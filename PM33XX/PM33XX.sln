@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PM33XX", "PM33XX.vcproj", "{8AE4182E-A23E-41E1-A009-1A51C02DA144}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PM33XX_Setup", "..\PM33XX_Setup\PM33XX_Setup.vdproj", "{74A6001D-4937-4C7B-8FDC-8E295CFD4B4D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Debug|Win32.Build.0 = Debug|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Release|Win32.ActiveCfg = Release|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Release|Win32.Build.0 = Release|Win32
+		{74A6001D-4937-4C7B-8FDC-8E295CFD4B4D}.Debug|Win32.ActiveCfg = Debug
+		{74A6001D-4937-4C7B-8FDC-8E295CFD4B4D}.Release|Win32.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

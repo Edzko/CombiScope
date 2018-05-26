@@ -1,0 +1,100 @@
+Fix:
+Info X and Y values when in Log mode
+
+To add or improve:
+
+Context menu on the plot
+Load/Save setups
+Load memory traces
+plot ylabel (V/mV) 
+trigger point
+
+Store more settings in Registry
+
+Improve icon bitmaps ??
+
+Online Help
+
+Setup/Install program
+
+Add About box
+
+Cursors should stay at X/Y when window is resizing, and in print --> associate cursor with V/T
+	Cursors should be associated with V and datapnt, and not with screen pnts
+	Cursors should adjust when Info toggles
+	Cursors should indicate frequency in FFT mode
+	Cursors X-only: Add 'X' intersection with the selected trace
+	Allow to select a trace when not controlling the cursors. Add cursor Handles??
+Function keys ??
+
+FFT button diabled when no trace selected
+FFT mode off when new traced downloaded or loaded from file
+FFT min and max can be used to find min and max of the y-scale
+Make global npoints, and use wherever trace.ndata
+Call SetTraceData before OpenTraceFile and GetTrace
+Do spectrum for all traces when in fftMode ??
+
+Store trace Enable Switches in Registry
+
+Load trace from excel and send it to the scope
+Send waveforms back to Scope
+Filter tool (filtfilt with coef)
+
+Disable buttons when not connected, e.g. Hardcopy, Gettrace, Autosetup
+
+Save file (same filename) adds double entry in MRU list
+Save As JPG, PNG, BMP, TIF, PDF  
+    Remove individual "Save as" icons in the menu, and allow "Save As" in the SaveFile Dlg filetype
+
+Disable zoom button when bitmap hardcopy is downloaded, and re-enable when file is loaded or traces are downloaded
+  --> Set Application Mode 
+
+No cursors or info when displaying bitmap
+Once BMP is created (hardcopy), GetTraces should remove BMP to show traces again
+Get last comport from registry and select at startup
+
+Add font option for labels, axes grid and info and annotation
+Add Y-label and Title. In Bold
+Add Text Annotation. 
+	Track mouse move location. When WM_CHAR, activate "amAnnotating" until CR
+	Add small 'X' at the annotation location (registered in datapnt/V)
+	Adopt color from selected trace, or default black
+
+Zooming: 
+	Fix info box
+	Allow Cursors
+	Zoom on Zoom
+	Change pointers when zooming (cross)
+	Zooming stays when unclick zoom, to do cursors, etc
+	Add button for Zoom Extends
+	
+Group Interface
+  Connect
+  Scan
+  Port (Combo)
+  Baud (Combo)
+Group Scope
+  Hardcopy
+  AutoSetup
+  Get Traces
+  Get Config
+  Set Config
+Group View
+  Copy
+  Info
+Group Cursors
+  Select
+  Color
+Group Traces
+  Color
+  Width
+  Copy data
+
+Tab2:
+Traces
+Copy Trace to memory
+	Ability to display selected trace/memory on the scope ???
+
+Tab3:
+  Filtering
+  Math (add / subtract, invert, multiply)

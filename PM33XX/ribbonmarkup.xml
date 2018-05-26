@@ -1,0 +1,568 @@
+<!--
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// Copyright (c) Microsoft Corporation. All rights reserved
+-->
+
+<Application xmlns="http://schemas.microsoft.com/windows/2009/Ribbon">
+
+    <Application.Commands>
+
+        <!-- Application Menu Commands -->
+        <Command Name="IDM_FILEMENU" Comment="The application menu anchor"/>
+        <Command Name="IDM_MRU" Comment="The Most Recently Used Menu">
+            <Command.LabelTitle>
+                <String>Recent project files</String>
+            </Command.LabelTitle>
+        </Command>
+        <Command Name="IDM_NEW" Comment="Create new trace file">
+            <Command.LabelTitle>New</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/NewL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_OPEN" Comment="Create new scene">
+            <Command.LabelTitle>Open</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/OpenFileL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_SAVE" Comment="Create new scene">
+            <Command.LabelTitle>Save</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/SaveL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="SaveAsSplitButton"></Command>
+        <Command Name="IDM_SAVEAS" Comment="Save Scene as ...">
+            <Command.LabelTitle>Save As ...</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/SaveAsL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_SAVEASANS" Comment="Save Project">
+            <Command.LabelTitle>Save As GSF</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/SaveAsL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_SAVEASXLS" Comment="Save Project as EXCEL">
+            <Command.LabelTitle>Save As CSV</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/filexls.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_SAVEASPNG" Comment="Save screen as PNG">
+            <Command.LabelTitle>Save As PNG</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/filepng.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_SAVEASBMP" Comment="Save screen as bitmap">
+            <Command.LabelTitle>Save As BMP</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/filebmp.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_PRINTPREVIEW" Comment="Print Preview">
+            <Command.LabelTitle>Preview</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/PrintPreviewL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+
+        <Command Name="IDM_PRINT" Comment="Print Project">
+            <Command.LabelTitle>Print</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/PrintL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_RIBBONEXIT" Comment="Exit command">
+            <Command.LabelTitle>Exit Button</Command.LabelTitle>
+            <Command.LargeImages>
+                <Image>img/ExitL.bmp</Image>
+            </Command.LargeImages>
+        </Command>
+
+
+        <!-- Application Ribbon Commands -->
+        <Command Name = "TabPM33XX"  LabelTitle="Operation"/>
+
+        <Command Name = "GroupConnect"  LabelTitle="Interface"/>
+        <Command Name = "IDM_CONNECT" LabelTitle="Connect" LabelDescription="Connect to Instrument" TooltipTitle="Connect to Instrument" 
+                 TooltipDescription="Connect to a PM33XX Oscilloscope using the selected interface settings.">
+            <Command.LargeImages>
+                <Image Source="img/disconnect.bmp" />
+            </Command.LargeImages>
+        </Command>
+
+        <Command Name="IDM_SELECTCOLOR" LabelTitle="Color" TooltipTitle="Select Color"
+                 TooltipDescription="Set the color for the selected object.">
+            <Command.LargeImages>
+                <Image Source="img/color_swatches.bmp" />
+            </Command.LargeImages>
+        </Command>
+
+        <Command Name="GroupScope" LabelTitle="CombiScope" />
+        <Command Name="IDM_HARDCOPY" LabelTitle="Hardcopy" TooltipTitle="Capture Hardcopy" TooltipDescription="Acquire a hardcopy of the screen f the Oscilloscope. &#013;&#013;Note: Make sure that the instrument is set to produce a HPGL hardcopy!" >
+            <Command.LargeImages>
+                <Image Source="img/snapshot.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_COPY" LabelTitle="Copy" TooltipTitle="Copy" TooltipDescription="Copy to Clipboard.">
+            <Command.LargeImages>
+                <Image Source="img/copy.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_GETTRACES" LabelTitle="Get Traces" TooltipTitle="Get Traces" TooltipDescription="Download selected traces from instrument.">
+            <Command.LargeImages>
+                <Image Source="img/get_traces.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_RUN" LabelTitle="Run" TooltipTitle="Arm Instrument" TooltipDescription="Re-arm the trigger of the instrument to capture a new acquisition.">
+            <Command.LargeImages>
+                <Image Source="img/run.bmp" />
+            </Command.LargeImages>
+        </Command>
+
+        <Command Name="GroupInterface" LabelTitle="Interface"/>
+
+        <Command Name="IDM_COMPORTS"  LabelTitle="Port" TooltipTitle="Select COM port" TooltipDescription="Select COM port"/>
+        <Command Name="IDM_BAUD" LabelTitle="Baud" TooltipTitle="Baudrate" TooltipDescription="Select Baudrate" />
+
+        <Command Name="IDM_SELECT" LabelTitle="Map" LabelDescription="Select a Map" TooltipTitle="Select Background"
+               TooltipDescription="Select an image file to use as the operational floorplan.">
+            <Command.LargeImages>
+                <Image Source="img/control_play_blue.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_AUTOSETUP" LabelTitle="Auto Setup" TooltipTitle="Automatic Setup" TooltipDescription="Automatically configure the scope with the proper settings for the current input signal." >
+            <Command.LargeImages>
+                <Image Source="img/Window_Config.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_CONFIG" LabelTitle="Channels" TooltipTitle="Configure Channels" TooltipDescription="Configure colors and appearance of channels and traces." >
+            <Command.LargeImages>
+                <Image Source="img/config.bmp" />
+            </Command.LargeImages>
+
+        </Command>
+
+        <Command Name="GroupInfo" LabelTitle="Info" />
+        <Command Name="GroupView" LabelTitle="View" />
+        <Command Name="IDM_CURSORS" LabelTitle="Cursors" TooltipTitle="Cursors">
+            <Command.LargeImages>
+                <Image Source="img/Cursor.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_INFO" LabelTitle="Info" TooltipTitle="Display Information" TooltipDescription="Open the detailed information side bar to display additional information about the traces and cursors" >
+            <Command.LargeImages>
+                <Image Source="img/information.bmp" />
+            </Command.LargeImages>
+        </Command>
+      <Command Name="IDM_ZOOM" LabelTitle="Zoom" TooltipTitle="Zoom" TooltipDescription="Zoom area of interest." >
+        <Command.LargeImages>
+          <Image Source="img/zoom_fit.bmp" />
+        </Command.LargeImages>
+      </Command>
+      <Command Name="IDM_ZOOMEXTEND" LabelTitle="Zoom out" TooltipTitle="Zoom All" TooltipDescription="Zoom out to the full view of the captured signal." >
+        <Command.LargeImages>
+          <Image Source="img/zoom_extend.bmp" />
+        </Command.LargeImages>
+      </Command>
+        <Command Name="GroupFFT" LabelTitle="Fourier Analysis" />
+        <Command Name="IDM_FFT" LabelTitle="Spectrum" TooltipTitle="Frequency Spectrum" TooltipDescription="Perform a Fast Fourier Transform Analysis on the selected trace to view the frequency spectrum." >
+            <Command.LargeImages>
+                <Image Source="img/fft_1.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_WINDOW" LabelTitle="Window" TooltipTitle="FFT Window" TooltipDescription="Select a window algorithm for the Fast Fourier Transform">
+            <Command.LargeImages>
+                <Image Source="img/window_1_1.bmp" />
+            </Command.LargeImages>
+        </Command>
+        <Command Name="IDM_XLOG" LabelTitle="X Log" />
+        <Command Name="IDM_YLOG" LabelTitle="Y Log" />
+
+
+        <Command Name="TabTraces" LabelTitle="Traces and Channels" />
+        <Command Name="GroupChannels" LabelTitle="Channels" />
+        <Command Name="IDM_CH1" LabelTitle="CH1" />
+        <Command Name="IDM_CH2" LabelTitle="CH2" />
+        <Command Name="IDM_CH3" LabelTitle="CH3" />
+        <Command Name="IDM_CH4" LabelTitle="CH4" />
+
+        <Command Name="GroupMemory" LabelTitle="Memory Bank" />
+        <Command Name="IDM_MEM1" LabelTitle="M1" />
+        <Command Name="IDM_MEM2" LabelTitle="M2" />
+        <Command Name="IDM_MEM3" LabelTitle="M3" />
+        <Command Name="IDM_MEM4" LabelTitle="M4" />
+        <Command Name="IDM_MEM5" LabelTitle="M5" />
+        <Command Name="IDM_MEM6" LabelTitle="M6" />
+        <Command Name="IDM_MEM7" LabelTitle="M7" />
+        <Command Name="IDM_MEM8" LabelTitle="M8" />
+        <Command Name="IDM_MEM9" LabelTitle="M09" />
+        <Command Name="IDM_MEM10" LabelTitle="M10" />
+        <Command Name="IDM_MEM11" LabelTitle="M11" />
+        <Command Name="IDM_MEM12" LabelTitle="M12" />
+        <Command Name="IDM_MEM13" LabelTitle="M13" />
+        <Command Name="IDM_MEM14" LabelTitle="M14" />
+        <Command Name="IDM_MEM15" LabelTitle="M15" />
+        <Command Name="IDM_MEM16" LabelTitle="M16" />
+        <Command Name="GroupSelect" LabelTitle="Select" />
+        <Command Name="IDM_ALLCH" LabelTitle="All" TooltipTitle="Toggle All Channels" TooltipDescription="Enable or disable all traces and mamory banks" >
+            <Command.LargeImages>
+                <Image Source="img/select.bmp" />
+            </Command.LargeImages>
+        </Command>
+            
+
+        <Command Name="cmdHelp"
+                 Symbol="IDM_HELP">
+        </Command>
+
+
+
+
+
+    </Application.Commands>
+
+
+
+    <!-- ##########################   APPLICATION VIEW   #########################################  -->
+
+    <Application.Views >
+        <Ribbon Name ="MyRibbon">
+
+            <!-- QAT (Quick Access Toolbar) -->
+            <Ribbon.QuickAccessToolbar>
+                <QuickAccessToolbar >
+                    <QuickAccessToolbar.ApplicationDefaults>
+                        <!-- Button CommandName="Undo" ApplicationDefaults.IsChecked="true"/ -->
+                        <!-- ToggleButton CommandName="ViewSource" ApplicationDefaults.IsChecked="false"/ -->
+                        <Button CommandName="IDM_CONNECT" />
+                        <Button CommandName="IDM_HARDCOPY" />
+                    </QuickAccessToolbar.ApplicationDefaults>
+                </QuickAccessToolbar>
+            </Ribbon.QuickAccessToolbar>
+
+            <Ribbon.ApplicationMenu>
+                <ApplicationMenu CommandName="IDM_FILEMENU">
+                    <ApplicationMenu.RecentItems>
+                        <RecentItems CommandName="IDM_MRU" MaxCount="9" />
+                    </ApplicationMenu.RecentItems>
+                    <MenuGroup Class="MajorItems">
+                        <Button CommandName="IDM_NEW" />
+                        <Button CommandName="IDM_OPEN" />
+                        <Button CommandName="IDM_SAVE" />
+
+                        <SplitButton CommandName="SaveAsSplitButton" >
+                            <SplitButton.ButtonItem>
+                                <Button CommandName="IDM_SAVEAS" />
+                            </SplitButton.ButtonItem>
+                            <SplitButton.MenuGroups>
+                                <MenuGroup Class="MajorItems">
+                                    <Button CommandName="IDM_SAVEASANS" />
+                                    <Button CommandName="IDM_SAVEASXLS" />
+                                    <Button CommandName="IDM_SAVEASPNG" />
+                                    <Button CommandName="IDM_SAVEASBMP" />
+                                </MenuGroup>
+                            </SplitButton.MenuGroups>
+                        </SplitButton>
+
+                        <Button CommandName="IDM_PRINTPREVIEW" />
+                        <Button CommandName="IDM_PRINT" />
+                        <Button CommandName="IDM_RIBBONEXIT" />
+                    </MenuGroup>
+                </ApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <Ribbon.Tabs>
+                <Tab CommandName="TabPM33XX">
+
+                    <Group CommandName ="GroupInterface">
+                        <SizeDefinition>
+                            <ControlNameMap>
+                                <ControlNameDefinition Name="IDM_CONNECT"/>
+                                <ControlNameDefinition Name="IDM_COMPORTS"/>
+                                <ControlNameDefinition Name ="IDM_BAUD"/>
+                            </ControlNameMap>
+                            <GroupSizeDefinition Size="Large">
+                                    <ControlSizeDefinition ControlName="IDM_CONNECT" ImageSize="Large" IsLabelVisible="true"/>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_COMPORTS" ImageSize="Small"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_BAUD" ImageSize="Small"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Medium">
+                                    <ControlSizeDefinition ControlName="IDM_CONNECT" ImageSize="Large"  IsLabelVisible="true"/>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_COMPORTS" ImageSize="Small"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_BAUD" ImageSize="Small"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Small">
+                                    <ControlSizeDefinition ControlName="IDM_CONNECT" ImageSize="Small"  IsLabelVisible="true"/>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_COMPORTS" ImageSize="Small"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_BAUD" ImageSize="Small"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                        </SizeDefinition>
+                        <Button CommandName="IDM_CONNECT" />
+                        <ComboBox CommandName="IDM_COMPORTS"/>
+                        <ComboBox CommandName="IDM_BAUD" />
+                    </Group>
+                    <Group CommandName="GroupScope" SizeDefinition="FiveButtons">
+                        <Button CommandName="IDM_HARDCOPY" />
+                        <Button CommandName="IDM_COPY" />
+                        <Button CommandName ="IDM_AUTOSETUP" />
+                        <!-- Button CommandName ="IDM_CONFIG" -->
+                        <Button CommandName="IDM_GETTRACES" />
+                        <Button CommandName ="IDM_RUN" />
+                    </Group>
+
+                    <Group CommandName ="GroupView"  SizeDefinition="FourButtons">
+                        <SplitButtonGallery CommandName="IDM_CURSORS" >
+                            <SplitButtonGallery.MenuLayout>
+                                <VerticalMenuLayout/>
+                            </SplitButtonGallery.MenuLayout>
+                        </SplitButtonGallery>
+                        <ToggleButton CommandName ="IDM_INFO" />
+                        <DropDownColorPicker CommandName="IDM_SELECTCOLOR" ColorTemplate="StandardColors" />
+                        <ToggleButton CommandName ="IDM_ZOOM" />
+                      <!--Button CommandName ="IDM_ZOOMEXTEND" / -->
+                    </Group>
+                    <Group CommandName="GroupFFT">
+                        <SizeDefinition>
+                            <ControlNameMap>
+                                <ControlNameDefinition Name="IDM_FFT"/>
+                                <ControlNameDefinition Name="IDM_WINDOW"/>
+                                <ControlNameDefinition Name="IDM_XLOG"/>
+                                <ControlNameDefinition Name ="IDM_YLOG"/>
+                            </ControlNameMap>
+                            <GroupSizeDefinition Size="Large">
+                                <ControlSizeDefinition ControlName="IDM_FFT" ImageSize="Large" />
+                                <ControlSizeDefinition ControlName="IDM_WINDOW" ImageSize="Large"  />
+                                <ColumnBreak ShowSeparator="true"/>
+                                    <ControlSizeDefinition ControlName="IDM_XLOG" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_YLOG" ImageSize="Small" IsImageVisible ="false"/>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Medium">
+                                <ControlSizeDefinition ControlName="IDM_FFT" ImageSize="Small" />
+                                <ControlSizeDefinition ControlName="IDM_WINDOW" ImageSize="Small" />
+                                <ColumnBreak ShowSeparator="true"/>
+                                    <ControlSizeDefinition ControlName="IDM_XLOG" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_YLOG" ImageSize="Small" IsImageVisible ="false"/>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Small">
+                                <ControlSizeDefinition ControlName="IDM_FFT" ImageSize="Small" />
+                                <ControlSizeDefinition ControlName="IDM_WINDOW" ImageSize="Small" />
+                                <ColumnBreak ShowSeparator="true"/>
+                                    <ControlSizeDefinition ControlName="IDM_XLOG" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_YLOG" ImageSize="Small" IsImageVisible ="false"/>
+                            </GroupSizeDefinition>
+                        </SizeDefinition>
+                        <ToggleButton CommandName="IDM_FFT" />
+                        <SplitButtonGallery CommandName="IDM_WINDOW" HasLargeItems="true" Type ="Items" />
+                        <CheckBox CommandName ="IDM_XLOG" />
+                        <CheckBox CommandName ="IDM_YLOG" />
+                    </Group>
+                </Tab>
+
+                <Tab CommandName="TabTraces" >
+                    <Group CommandName="GroupChannels">
+                        <SizeDefinition>
+                            <ControlNameMap>
+                                <ControlNameDefinition Name="IDM_CH1"/>
+                                <ControlNameDefinition Name="IDM_CH2"/>
+                                <ControlNameDefinition Name ="IDM_CH3"/>
+                                <ControlNameDefinition Name ="IDM_CH4"/>
+                            </ControlNameMap>
+                            <GroupSizeDefinition Size="Large">
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH2" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Medium">
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH2" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Small">
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH2" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_CH3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_CH4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                        </SizeDefinition>
+                        <CheckBox CommandName ="IDM_CH1" />
+                        <CheckBox CommandName ="IDM_CH2" />
+                        <CheckBox CommandName ="IDM_CH3" />
+                        <CheckBox CommandName ="IDM_CH4" />
+                    </Group>
+                    <Group CommandName="GroupMemory">
+                        <SizeDefinition>
+                            <ControlNameMap>
+                                <ControlNameDefinition Name="IDM_MEM1" />
+                                <ControlNameDefinition Name="IDM_MEM2" />
+                                <ControlNameDefinition Name="IDM_MEM3" />
+                                <ControlNameDefinition Name="IDM_MEM4" />
+                                <ControlNameDefinition Name="IDM_MEM5" />
+                                <ControlNameDefinition Name="IDM_MEM6" />
+                                <ControlNameDefinition Name="IDM_MEM7" />
+                                <ControlNameDefinition Name="IDM_MEM8" />
+                                <ControlNameDefinition Name="IDM_MEM9" />
+                                <ControlNameDefinition Name="IDM_MEM10" />
+                                <ControlNameDefinition Name="IDM_MEM11" />
+                                <ControlNameDefinition Name="IDM_MEM12" />
+                                <ControlNameDefinition Name="IDM_MEM13" />
+                                <ControlNameDefinition Name="IDM_MEM14" />
+                                <ControlNameDefinition Name="IDM_MEM15" />
+                                <ControlNameDefinition Name="IDM_MEM16" />
+                            </ControlNameMap>
+                            <GroupSizeDefinition Size="Large">
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM2" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM5" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM6" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM7" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM8" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM9" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM10" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM11" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM12" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM13" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM14" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM15" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM16" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Medium">
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM2" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM5" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM6" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM7" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM8" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM9" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM10" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM11" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM12" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM13" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM14" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM15" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM16" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                            <GroupSizeDefinition Size="Small">
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM1" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM2" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM3" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM4" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM5" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM6" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM7" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM8" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <ColumnBreak ShowSeparator="true"/>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM9" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM10" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM11" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM12" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                                <Row>
+                                    <ControlSizeDefinition ControlName="IDM_MEM13" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM14" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM15" ImageSize="Small" IsImageVisible ="false"/>
+                                    <ControlSizeDefinition ControlName="IDM_MEM16" ImageSize="Small" IsImageVisible ="false"/>
+                                </Row>
+                            </GroupSizeDefinition>
+                        </SizeDefinition>
+                        <CheckBox CommandName ="IDM_MEM1" />
+                        <CheckBox CommandName ="IDM_MEM2" />
+                        <CheckBox CommandName ="IDM_MEM3" />
+                        <CheckBox CommandName ="IDM_MEM4" />
+                        <CheckBox CommandName ="IDM_MEM5" />
+                        <CheckBox CommandName ="IDM_MEM6" />
+                        <CheckBox CommandName ="IDM_MEM7" />
+                        <CheckBox CommandName ="IDM_MEM8" />
+                        <CheckBox CommandName ="IDM_MEM9" />
+                        <CheckBox CommandName ="IDM_MEM10" />
+                        <CheckBox CommandName ="IDM_MEM11" />
+                        <CheckBox CommandName ="IDM_MEM12" />
+                        <CheckBox CommandName ="IDM_MEM13" />
+                        <CheckBox CommandName ="IDM_MEM14" />
+                        <CheckBox CommandName ="IDM_MEM15" />
+                        <CheckBox CommandName ="IDM_MEM16" />
+                    </Group>
+                    <Group CommandName="GroupSelect" SizeDefinition="OneButton">
+                        <Button CommandName="IDM_ALLCH" />
+                    </Group>
+                </Tab>
+
+
+
+            </Ribbon.Tabs>
+
+            <Ribbon.HelpButton>
+                <HelpButton CommandName="cmdHelp"/>
+            </Ribbon.HelpButton>
+
+        </Ribbon>
+    </Application.Views>
+
+</Application>

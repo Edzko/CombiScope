@@ -1,0 +1,23 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1 or later
+Compiled file=PM33XX.chm
+Contents file=PM33XX.hhc
+Default topic=MAIN.HTM
+Display compile progress=No
+Full-text search=Yes
+Index file=PM33XX.hhk
+Language=0x409 English (United States)
+
+
+[FILES]
+Main.htm
+Capturing.htm
+Connecting.htm
+Cursors.htm
+Features.htm
+FFT.htm
+GUI.htm
+
+[INFOTYPES]
+

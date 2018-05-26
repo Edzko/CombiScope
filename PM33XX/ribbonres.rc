@@ -1,0 +1,535 @@
+// ******************************************************************************
+// * This is an automatically generated file containing the ribbon resource for *
+// * your application.                                                          *
+// ******************************************************************************
+
+#include ".\ribbonres.h"
+
+STRINGTABLE 
+BEGIN
+    IDM_MRU_LabelTitle_RESID L"Recent project files" /* LabelTitle IDM_MRU_LabelTitle_RESID: The Most Recently Used Menu */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_NEW_LabelTitle_RESID L"New" /* LabelTitle IDM_NEW_LabelTitle_RESID: Create new trace file */
+END
+
+IDM_NEW_LargeImages_RESID    BITMAP    "img\\NewL.bmp" /* LargeImages IDM_NEW_LargeImages_RESID: Create new trace file */
+STRINGTABLE 
+BEGIN
+    IDM_OPEN_LabelTitle_RESID L"Open" /* LabelTitle IDM_OPEN_LabelTitle_RESID: Create new scene */
+END
+
+IDM_OPEN_LargeImages_RESID    BITMAP    "img\\OpenFileL.bmp" /* LargeImages IDM_OPEN_LargeImages_RESID: Create new scene */
+STRINGTABLE 
+BEGIN
+    IDM_SAVE_LabelTitle_RESID L"Save" /* LabelTitle IDM_SAVE_LabelTitle_RESID: Create new scene */
+END
+
+IDM_SAVE_LargeImages_RESID    BITMAP    "img\\SaveL.bmp" /* LargeImages IDM_SAVE_LargeImages_RESID: Create new scene */
+STRINGTABLE 
+BEGIN
+    IDM_SAVEAS_LabelTitle_RESID L"Save As ..." /* LabelTitle IDM_SAVEAS_LabelTitle_RESID: Save Scene as ... */
+END
+
+IDM_SAVEAS_LargeImages_RESID    BITMAP    "img\\SaveAsL.bmp" /* LargeImages IDM_SAVEAS_LargeImages_RESID: Save Scene as ... */
+STRINGTABLE 
+BEGIN
+    IDM_SAVEASANS_LabelTitle_RESID L"Save As GSF" /* LabelTitle IDM_SAVEASANS_LabelTitle_RESID: Save Project */
+END
+
+IDM_SAVEASANS_LargeImages_RESID    BITMAP    "img\\SaveAsL.bmp" /* LargeImages IDM_SAVEASANS_LargeImages_RESID: Save Project */
+STRINGTABLE 
+BEGIN
+    IDM_SAVEASXLS_LabelTitle_RESID L"Save As CSV" /* LabelTitle IDM_SAVEASXLS_LabelTitle_RESID: Save Project as EXCEL */
+END
+
+IDM_SAVEASXLS_LargeImages_RESID    BITMAP    "img\\filexls.bmp" /* LargeImages IDM_SAVEASXLS_LargeImages_RESID: Save Project as EXCEL */
+STRINGTABLE 
+BEGIN
+    IDM_SAVEASPNG_LabelTitle_RESID L"Save As PNG" /* LabelTitle IDM_SAVEASPNG_LabelTitle_RESID: Save screen as PNG */
+END
+
+IDM_SAVEASPNG_LargeImages_RESID    BITMAP    "img\\filepng.bmp" /* LargeImages IDM_SAVEASPNG_LargeImages_RESID: Save screen as PNG */
+STRINGTABLE 
+BEGIN
+    IDM_SAVEASBMP_LabelTitle_RESID L"Save As BMP" /* LabelTitle IDM_SAVEASBMP_LabelTitle_RESID: Save screen as bitmap */
+END
+
+IDM_SAVEASBMP_LargeImages_RESID    BITMAP    "img\\filebmp.bmp" /* LargeImages IDM_SAVEASBMP_LargeImages_RESID: Save screen as bitmap */
+STRINGTABLE 
+BEGIN
+    IDM_PRINTPREVIEW_LabelTitle_RESID L"Preview" /* LabelTitle IDM_PRINTPREVIEW_LabelTitle_RESID: Print Preview */
+END
+
+IDM_PRINTPREVIEW_LargeImages_RESID    BITMAP    "img\\PrintPreviewL.bmp" /* LargeImages IDM_PRINTPREVIEW_LargeImages_RESID: Print Preview */
+STRINGTABLE 
+BEGIN
+    IDM_PRINT_LabelTitle_RESID L"Print" /* LabelTitle IDM_PRINT_LabelTitle_RESID: Print Project */
+END
+
+IDM_PRINT_LargeImages_RESID    BITMAP    "img\\PrintL.bmp" /* LargeImages IDM_PRINT_LargeImages_RESID: Print Project */
+STRINGTABLE 
+BEGIN
+    IDM_RIBBONEXIT_LabelTitle_RESID L"Exit Button" /* LabelTitle IDM_RIBBONEXIT_LabelTitle_RESID: Exit command */
+END
+
+IDM_RIBBONEXIT_LargeImages_RESID    BITMAP    "img\\ExitL.bmp" /* LargeImages IDM_RIBBONEXIT_LargeImages_RESID: Exit command */
+STRINGTABLE 
+BEGIN
+    TabPM33XX_LabelTitle_RESID L"Operation" /* LabelTitle TabPM33XX_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    GroupConnect_LabelTitle_RESID L"Interface" /* LabelTitle GroupConnect_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONNECT_LabelTitle_RESID L"Connect" /* LabelTitle IDM_CONNECT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONNECT_LabelDescription_RESID L"Connect to Instrument" /* LabelDescription IDM_CONNECT_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONNECT_TooltipTitle_RESID L"Connect to Instrument" /* TooltipTitle IDM_CONNECT_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONNECT_TooltipDescription_RESID L"Connect to a PM33XX Oscilloscope using the selected interface settings." /* TooltipDescription IDM_CONNECT_TooltipDescription_RESID: (null) */
+END
+
+IDM_CONNECT_LargeImages_RESID    BITMAP    "img\\disconnect.bmp" /* LargeImages IDM_CONNECT_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_SELECTCOLOR_LabelTitle_RESID L"Color" /* LabelTitle IDM_SELECTCOLOR_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECTCOLOR_TooltipTitle_RESID L"Select Color" /* TooltipTitle IDM_SELECTCOLOR_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECTCOLOR_TooltipDescription_RESID L"Set the color for the selected object." /* TooltipDescription IDM_SELECTCOLOR_TooltipDescription_RESID: (null) */
+END
+
+IDM_SELECTCOLOR_LargeImages_RESID    BITMAP    "img\\color_swatches.bmp" /* LargeImages IDM_SELECTCOLOR_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    GroupScope_LabelTitle_RESID L"CombiScope" /* LabelTitle GroupScope_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_HARDCOPY_LabelTitle_RESID L"Hardcopy" /* LabelTitle IDM_HARDCOPY_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_HARDCOPY_TooltipTitle_RESID L"Capture Hardcopy" /* TooltipTitle IDM_HARDCOPY_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_HARDCOPY_TooltipDescription_RESID L"Acquire a hardcopy of the screen f the Oscilloscope. \n\nNote: Make sure that the instrument is set to produce a HPGL hardcopy!" /* TooltipDescription IDM_HARDCOPY_TooltipDescription_RESID: (null) */
+END
+
+IDM_HARDCOPY_LargeImages_RESID    BITMAP    "img\\snapshot.bmp" /* LargeImages IDM_HARDCOPY_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_COPY_LabelTitle_RESID L"Copy" /* LabelTitle IDM_COPY_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_COPY_TooltipTitle_RESID L"Copy" /* TooltipTitle IDM_COPY_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_COPY_TooltipDescription_RESID L"Copy to Clipboard." /* TooltipDescription IDM_COPY_TooltipDescription_RESID: (null) */
+END
+
+IDM_COPY_LargeImages_RESID    BITMAP    "img\\copy.bmp" /* LargeImages IDM_COPY_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_GETTRACES_LabelTitle_RESID L"Get Traces" /* LabelTitle IDM_GETTRACES_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_GETTRACES_TooltipTitle_RESID L"Get Traces" /* TooltipTitle IDM_GETTRACES_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_GETTRACES_TooltipDescription_RESID L"Download selected traces from instrument." /* TooltipDescription IDM_GETTRACES_TooltipDescription_RESID: (null) */
+END
+
+IDM_GETTRACES_LargeImages_RESID    BITMAP    "img\\get_traces.bmp" /* LargeImages IDM_GETTRACES_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_RUN_LabelTitle_RESID L"Run" /* LabelTitle IDM_RUN_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_RUN_TooltipTitle_RESID L"Arm Instrument" /* TooltipTitle IDM_RUN_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_RUN_TooltipDescription_RESID L"Re-arm the trigger of the instrument to capture a new acquisition." /* TooltipDescription IDM_RUN_TooltipDescription_RESID: (null) */
+END
+
+IDM_RUN_LargeImages_RESID    BITMAP    "img\\run.bmp" /* LargeImages IDM_RUN_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    GroupInterface_LabelTitle_RESID L"Interface" /* LabelTitle GroupInterface_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_COMPORTS_LabelTitle_RESID L"Port" /* LabelTitle IDM_COMPORTS_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_COMPORTS_TooltipTitle_RESID L"Select COM port" /* TooltipTitle IDM_COMPORTS_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_COMPORTS_TooltipDescription_RESID L"Select COM port" /* TooltipDescription IDM_COMPORTS_TooltipDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_BAUD_LabelTitle_RESID L"Baud" /* LabelTitle IDM_BAUD_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_BAUD_TooltipTitle_RESID L"Baudrate" /* TooltipTitle IDM_BAUD_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_BAUD_TooltipDescription_RESID L"Select Baudrate" /* TooltipDescription IDM_BAUD_TooltipDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECT_LabelTitle_RESID L"Map" /* LabelTitle IDM_SELECT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECT_LabelDescription_RESID L"Select a Map" /* LabelDescription IDM_SELECT_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECT_TooltipTitle_RESID L"Select Background" /* TooltipTitle IDM_SELECT_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_SELECT_TooltipDescription_RESID L"Select an image file to use as the operational floorplan." /* TooltipDescription IDM_SELECT_TooltipDescription_RESID: (null) */
+END
+
+IDM_SELECT_LargeImages_RESID    BITMAP    "img\\control_play_blue.bmp" /* LargeImages IDM_SELECT_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_AUTOSETUP_LabelTitle_RESID L"Auto Setup" /* LabelTitle IDM_AUTOSETUP_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_AUTOSETUP_TooltipTitle_RESID L"Automatic Setup" /* TooltipTitle IDM_AUTOSETUP_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_AUTOSETUP_TooltipDescription_RESID L"Automatically configure the scope with the proper settings for the current input signal." /* TooltipDescription IDM_AUTOSETUP_TooltipDescription_RESID: (null) */
+END
+
+IDM_AUTOSETUP_LargeImages_RESID    BITMAP    "img\\Window_Config.bmp" /* LargeImages IDM_AUTOSETUP_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_CONFIG_LabelTitle_RESID L"Channels" /* LabelTitle IDM_CONFIG_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONFIG_TooltipTitle_RESID L"Configure Channels" /* TooltipTitle IDM_CONFIG_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CONFIG_TooltipDescription_RESID L"Configure colors and appearance of channels and traces." /* TooltipDescription IDM_CONFIG_TooltipDescription_RESID: (null) */
+END
+
+IDM_CONFIG_LargeImages_RESID    BITMAP    "img\\config.bmp" /* LargeImages IDM_CONFIG_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    GroupInfo_LabelTitle_RESID L"Info" /* LabelTitle GroupInfo_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    GroupView_LabelTitle_RESID L"View" /* LabelTitle GroupView_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CURSORS_LabelTitle_RESID L"Cursors" /* LabelTitle IDM_CURSORS_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CURSORS_TooltipTitle_RESID L"Cursors" /* TooltipTitle IDM_CURSORS_TooltipTitle_RESID: (null) */
+END
+
+IDM_CURSORS_LargeImages_RESID    BITMAP    "img\\Cursor.bmp" /* LargeImages IDM_CURSORS_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_INFO_LabelTitle_RESID L"Info" /* LabelTitle IDM_INFO_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_INFO_TooltipTitle_RESID L"Display Information" /* TooltipTitle IDM_INFO_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_INFO_TooltipDescription_RESID L"Open the detailed information side bar to display additional information about the traces and cursors" /* TooltipDescription IDM_INFO_TooltipDescription_RESID: (null) */
+END
+
+IDM_INFO_LargeImages_RESID    BITMAP    "img\\information.bmp" /* LargeImages IDM_INFO_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_ZOOM_LabelTitle_RESID L"Zoom" /* LabelTitle IDM_ZOOM_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ZOOM_TooltipTitle_RESID L"Zoom" /* TooltipTitle IDM_ZOOM_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ZOOM_TooltipDescription_RESID L"Zoom area of interest." /* TooltipDescription IDM_ZOOM_TooltipDescription_RESID: (null) */
+END
+
+IDM_ZOOM_LargeImages_RESID    BITMAP    "img\\zoom_fit.bmp" /* LargeImages IDM_ZOOM_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_ZOOMEXTEND_LabelTitle_RESID L"Zoom out" /* LabelTitle IDM_ZOOMEXTEND_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ZOOMEXTEND_TooltipTitle_RESID L"Zoom All" /* TooltipTitle IDM_ZOOMEXTEND_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ZOOMEXTEND_TooltipDescription_RESID L"Zoom out to the full view of the captured signal." /* TooltipDescription IDM_ZOOMEXTEND_TooltipDescription_RESID: (null) */
+END
+
+IDM_ZOOMEXTEND_LargeImages_RESID    BITMAP    "img\\zoom_extend.bmp" /* LargeImages IDM_ZOOMEXTEND_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    GroupFFT_LabelTitle_RESID L"Fourier Analysis" /* LabelTitle GroupFFT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_FFT_LabelTitle_RESID L"Spectrum" /* LabelTitle IDM_FFT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_FFT_TooltipTitle_RESID L"Frequency Spectrum" /* TooltipTitle IDM_FFT_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_FFT_TooltipDescription_RESID L"Perform a Fast Fourier Transform Analysis on the selected trace to view the frequency spectrum." /* TooltipDescription IDM_FFT_TooltipDescription_RESID: (null) */
+END
+
+IDM_FFT_LargeImages_RESID    BITMAP    "img\\fft_1.bmp" /* LargeImages IDM_FFT_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_WINDOW_LabelTitle_RESID L"Window" /* LabelTitle IDM_WINDOW_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_WINDOW_TooltipTitle_RESID L"FFT Window" /* TooltipTitle IDM_WINDOW_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_WINDOW_TooltipDescription_RESID L"Select a window algorithm for the Fast Fourier Transform" /* TooltipDescription IDM_WINDOW_TooltipDescription_RESID: (null) */
+END
+
+IDM_WINDOW_LargeImages_RESID    BITMAP    "img\\window_1_1.bmp" /* LargeImages IDM_WINDOW_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    IDM_XLOG_LabelTitle_RESID L"X Log" /* LabelTitle IDM_XLOG_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_YLOG_LabelTitle_RESID L"Y Log" /* LabelTitle IDM_YLOG_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    TabTraces_LabelTitle_RESID L"Traces and Channels" /* LabelTitle TabTraces_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    GroupChannels_LabelTitle_RESID L"Channels" /* LabelTitle GroupChannels_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CH1_LabelTitle_RESID L"CH1" /* LabelTitle IDM_CH1_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CH2_LabelTitle_RESID L"CH2" /* LabelTitle IDM_CH2_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CH3_LabelTitle_RESID L"CH3" /* LabelTitle IDM_CH3_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CH4_LabelTitle_RESID L"CH4" /* LabelTitle IDM_CH4_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    GroupMemory_LabelTitle_RESID L"Memory Bank" /* LabelTitle GroupMemory_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM1_LabelTitle_RESID L"M1" /* LabelTitle IDM_MEM1_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM2_LabelTitle_RESID L"M2" /* LabelTitle IDM_MEM2_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM3_LabelTitle_RESID L"M3" /* LabelTitle IDM_MEM3_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM4_LabelTitle_RESID L"M4" /* LabelTitle IDM_MEM4_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM5_LabelTitle_RESID L"M5" /* LabelTitle IDM_MEM5_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM6_LabelTitle_RESID L"M6" /* LabelTitle IDM_MEM6_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM7_LabelTitle_RESID L"M7" /* LabelTitle IDM_MEM7_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM8_LabelTitle_RESID L"M8" /* LabelTitle IDM_MEM8_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM9_LabelTitle_RESID L"M09" /* LabelTitle IDM_MEM9_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM10_LabelTitle_RESID L"M10" /* LabelTitle IDM_MEM10_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM11_LabelTitle_RESID L"M11" /* LabelTitle IDM_MEM11_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM12_LabelTitle_RESID L"M12" /* LabelTitle IDM_MEM12_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM13_LabelTitle_RESID L"M13" /* LabelTitle IDM_MEM13_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM14_LabelTitle_RESID L"M14" /* LabelTitle IDM_MEM14_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM15_LabelTitle_RESID L"M15" /* LabelTitle IDM_MEM15_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_MEM16_LabelTitle_RESID L"M16" /* LabelTitle IDM_MEM16_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    GroupSelect_LabelTitle_RESID L"Select" /* LabelTitle GroupSelect_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ALLCH_LabelTitle_RESID L"All" /* LabelTitle IDM_ALLCH_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ALLCH_TooltipTitle_RESID L"Toggle All Channels" /* TooltipTitle IDM_ALLCH_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ALLCH_TooltipDescription_RESID L"Enable or disable all traces and mamory banks" /* TooltipDescription IDM_ALLCH_TooltipDescription_RESID: (null) */
+END
+
+IDM_ALLCH_LargeImages_RESID    BITMAP    "img\\select.bmp" /* LargeImages IDM_ALLCH_LargeImages_RESID: (null) */
+APPLICATION_RIBBON    UIFILE    "ribbonmarkup.bml"
