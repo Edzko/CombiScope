@@ -331,7 +331,7 @@ public:
 					if (hCommPort != INVALID_HANDLE_VALUE)
 					{
 
-						CommTimeouts.ReadIntervalTimeout = 5000;
+						CommTimeouts.ReadTotalTimeoutConstant = 5000;
 						fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
 						if (!fSuccess) { break; }
 
@@ -352,7 +352,8 @@ public:
 						char sstr[20];
 						ReadFile(hCommPort,&hpgldata[di],blocksize,&nc,NULL);
 						di += nc;
-						while (nc == blocksize)
+						//while (nc == blocksize)
+						while (nc > 0)
 						{
 							rtn = ReadFile(hCommPort,&hpgldata[di],blocksize,&nc,NULL);
 							di += nc;
@@ -362,7 +363,7 @@ public:
 						}
 						DeleteObject(hfnt);
 						
-						CommTimeouts.ReadIntervalTimeout = 500;
+						CommTimeouts.ReadTotalTimeoutConstant = 500;
 						fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
 
 						// Store HPGL data to file

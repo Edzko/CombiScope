@@ -27,6 +27,10 @@ extern HRESULT InitRibbon(HWND hWindowFrame);
 extern void DestroyRibbon();
 unsigned int SBID[5] = {3001,3002,3003,3004,3005};
 
+
+
+#define _USEDOUBLEBUFFER_ 1
+
 #define MAX_LOADSTRING 500
 #define PI 3.14159265359F
 
@@ -37,7 +41,7 @@ HWND m_hStatusWnd; // Status Bar Window Handle
 char szTitle[MAX_LOADSTRING];					// The title bar text
 LPCSTR szWindowClass = "COMBISCOPE_WND";			// the main window class name
 bool showInfo;
-int left, top, width, height; 
+int left, top, width, height, infowidth; 
 // Forward declarations of functions included in this code module:
 ATOM MyRegisterClass(HINSTANCE hInstance);
 BOOL InitInstance(HINSTANCE, int);
@@ -267,6 +271,38 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	return TRUE;
 }
 
+void getCursorValue()
+{
+	Cursor[0].value = viewVmin + ((height - ((float)Cursor[0].pos - top + topMargin + 15)) / height) * (viewVmax - viewVmin) + y00;   // y1
+	Cursor[1].value = viewVmin + ((height - ((float)Cursor[1].pos - top + topMargin + 15)) / height) * (viewVmax - viewVmin) + y00;   // y2
+
+	Cursor[2].value = viewTmin + (viewTmax - viewTmin) * (Cursor[2].pos - left - 10) / width;  // t1
+	Cursor[3].value = viewTmin + (viewTmax - viewTmin) * (Cursor[3].pos - left - 10) / width;  // t2
+	TRACE2("Value(0) = %f, Pos = %i\r\n",Cursor[1].value,Cursor[1].pos);
+
+	if (Cursor[0].value<viewVmin) Cursor[0].value=viewVmin; else if (Cursor[0].value>viewVmax) Cursor[0].value=viewVmax;
+	if (Cursor[1].value<viewVmin) Cursor[1].value=viewVmin; else if (Cursor[1].value>viewVmax) Cursor[1].value=viewVmax;
+
+	if (Cursor[2].value<viewTmin) Cursor[2].value=viewTmin; else if (Cursor[2].value>viewTmax) Cursor[2].value=viewTmax;
+	if (Cursor[3].value<viewTmin) Cursor[3].value=viewTmin; else if (Cursor[3].value>viewTmax) Cursor[3].value=viewTmax;
+}
+void getCursorPos()
+{
+	Cursor[0].pos = (int)(top + (height - (Cursor[0].value - viewVmin - y00) /  (viewVmax - viewVmin)*height) ) ;
+	Cursor[1].pos = (int)(top + (height - (Cursor[1].value - viewVmin - y00) /  (viewVmax - viewVmin)*height) ) ;
+
+	Cursor[2].pos = left +  (Cursor[2].value - viewTmin) / (viewTmax - viewTmin) * width;
+	Cursor[3].pos = left +  (Cursor[3].value - viewTmin) / (viewTmax - viewTmin) * width;
+	TRACE2("Pos(2) = %i, width=%i\r\n",Cursor[2].pos,width);
+
+	if (Cursor[0].pos<top) Cursor[0].pos=top; else if (Cursor[0].pos>top+height) Cursor[0].pos=top+height;
+	if (Cursor[1].pos<top) Cursor[1].pos=top; else if (Cursor[1].pos>top+height) Cursor[1].pos=top+height;
+
+	if (Cursor[2].pos<left) Cursor[2].pos=left; else if (Cursor[2].pos>left+width) Cursor[2].pos=left+width;
+	if (Cursor[3].pos<left) Cursor[3].pos=left; else if (Cursor[3].pos>left+width) Cursor[3].pos=left+width;
+}
+
+
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -482,6 +518,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (cursorMoving)
 				{
 					if (ic<2) Cursor[ic].pos=mpoint.y; else Cursor[ic].pos=mpoint.x;
+					getCursorValue();	
 					myUpdate = true;
 					InvalidateRect(m_hWnd,NULL,TRUE);
 					UpdateWindow(m_hWnd);
@@ -596,8 +633,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_ERASEBKGND:
-		if (myUpdate) return FALSE;
-		else return DefWindowProc(hWnd, message, wParam, lParam);
+#ifdef _USEDOUBLEBUFFER_
+		if (myUpdate) 
+			return FALSE;
+		else 
+#endif
+			return DefWindowProc(hWnd, message, wParam, lParam);
 		break;
 
 		/*
@@ -929,7 +970,7 @@ void UpdateStatus()
 	}	
 }
 
-#define _USEDOUBLEBUFFER_ 1
+
 void Draw(HDC dc0, int CID)
 {
 	HBITMAP dcbmp;
@@ -938,7 +979,7 @@ void Draw(HDC dc0, int CID)
 	HBRUSH fil;
 	HFONT fnt;
 	BITMAP bm;
-	int dx, dy, infoy = 0, fnth, infowidth, yline;
+	int dx, dy, infoy = 0, fnth, yline;
 	RECT rc,cwnd;
 	POINT tp[35000];
 	char valstr[100];
@@ -994,13 +1035,15 @@ void Draw(HDC dc0, int CID)
 		double sx = (double)(cwnd.right - cwnd.left-20) / dx;
 		double sy = (double)(cwnd.bottom - cwnd.top-40) / dy;
 		if (sx<sy) sy = sx; else sx = sy;
-		StretchBlt(dc0,cwnd.left + (cwnd.right - cwnd.left-20 - (int)sx*dx)/2,
-			cwnd.top + (cwnd.bottom - cwnd.top-40 - (int)sy*dy)/2,
-			(int)sx*dx,
-			(int)sy*dy,
+		StretchBlt(dc0,cwnd.left + (cwnd.right - cwnd.left-20 - (int)(sx*dx))/2,
+			cwnd.top + (cwnd.bottom - cwnd.top-40 - (int)(sy*dy))/2,
+			(int)(sx*dx),
+			(int)(sy*dy),
 			dcmem,0,0,dx,dy,SRCCOPY);
+		//BitBlt(dc0,0,0,dx,dy,dcmem,0,0,SRCCOPY);
 		DeleteDC(dcmem);
 		DeleteObject(dcbmp);
+
 	} else {
 #if _USEDOUBLEBUFFER_
 		dc = CreateCompatibleDC(dc0);
@@ -1037,6 +1080,9 @@ void Draw(HDC dc0, int CID)
 		rc.top = 0;
 		rc.bottom = dy;
 #endif
+
+		if (!cursorMoving) getCursorPos();
+
 		fil = CreateSolidBrush(bgCol);
 		SelectObject(dc,fil);
 		FillRect(dc,&rc,fil);
@@ -1649,21 +1695,17 @@ void Draw(HDC dc0, int CID)
 				DrawText(dc,_T("Cursor info:"),12,&rc,DT_NOCLIP | DT_LEFT);
 				infoy += yline;
 
-				double t1 = viewTmin + (viewTmax - viewTmin) * (Cursor[2].pos - left) / width;
-				double y1 = viewVmin + ((height - ((float)Cursor[0].pos - top)) / height) * (viewVmax - viewVmin) + y00; 
 				rc.top = infoy;rc.bottom=rc.top;
-				sprintf_s(valstr,100,"X1 = %3.2f - Y1 = %3.2f\r\n", t1, y1);
+				sprintf_s(valstr,100,"X1 = %3.2f - Y1 = %3.2f\r\n", Cursor[2].value, Cursor[0].value);
 				DrawText(dc,CString(valstr),(int)strlen(valstr),&rc,DT_NOCLIP | DT_LEFT);
 				infoy += yline;
 
-				double t2 = viewTmin + (viewTmax - viewTmin) * (Cursor[3].pos - left) / width;
-				double y2 = viewVmin + ((height - ((float)Cursor[1].pos - top)) / height) * (viewVmax - viewVmin) + y00; 
 				rc.top = infoy;rc.bottom=rc.top;
-				sprintf_s(valstr,100,"X2 = %3.2f - Y2 = %3.2f", t2,y2);
+				sprintf_s(valstr,100,"X2 = %3.2f - Y2 = %3.2f", Cursor[3].value,Cursor[1].value);
 				DrawText(dc,CString(valstr),(int)strlen(valstr),&rc,DT_NOCLIP | DT_LEFT);
 				infoy += yline;
 
-				double dt = t2 - t1;
+				double dt = Cursor[3].value - Cursor[2].value;
 				double f = 1.001/dt;
 				rc.top = infoy;rc.bottom=rc.top;rc.left += 10;
 				char funit[10];
@@ -1684,9 +1726,11 @@ void Draw(HDC dc0, int CID)
 				pnt[3].x = rc.left + 1; pnt[3].y = rc.top + 9;
 				Polyline(dc,(POINT*)&pnt,4);
 
-				double dy = y2 - y1;
+				double dy = Cursor[1].value - Cursor[0].value;
 				rc.top = infoy;rc.bottom=rc.top;rc.left += 10;
-				sprintf_s(valstr,100,"V = %3.3f   Vavg = %3.2f",y2-y1, (y1+y2)/2.0);
+				sprintf_s(valstr,100,"V = %3.3f   Vavg = %3.2f",
+					Cursor[1].value-Cursor[0].value, 
+					(Cursor[0].value+Cursor[1].value)/2.0);
 				DrawText(dc,CString(valstr),(int)strlen(valstr),&rc,DT_NOCLIP | DT_LEFT);
 				
 				

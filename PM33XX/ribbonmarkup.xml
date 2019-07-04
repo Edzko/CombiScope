@@ -245,6 +245,7 @@
                         <!-- ToggleButton CommandName="ViewSource" ApplicationDefaults.IsChecked="false"/ -->
                         <Button CommandName="IDM_CONNECT" />
                         <Button CommandName="IDM_HARDCOPY" />
+                        <Button CommandName="IDM_PRINT" />
                     </QuickAccessToolbar.ApplicationDefaults>
                 </QuickAccessToolbar>
             </Ribbon.QuickAccessToolbar>

@@ -1,6 +1,8 @@
 Fix:
 Info X and Y values when in Log mode
 
+Y1 and Y2 reversed
+
 To add or improve:
 
 Context menu on the plot
@@ -8,6 +10,8 @@ Load/Save setups
 Load memory traces
 plot ylabel (V/mV) 
 trigger point
+
+
 
 Store more settings in Registry
 

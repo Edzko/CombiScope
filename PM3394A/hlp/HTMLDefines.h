@@ -10,7 +10,6 @@
 // Dialogs (IDD_*) 
 #define HIDD_ABOUTBOX                           0x20064
 #define HIDD_PM3394A_DIALOG                     0x20066
-#define HIDD_CONFIGURATION                      0x20085
 #define HIDD_WELCOME                            0x200AA
  
 // Frame Controls (IDW_*) 

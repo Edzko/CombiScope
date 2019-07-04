@@ -17,6 +17,7 @@ typedef struct
 	int pos;
 	COLORREF color;
 	int width;
+	double value;
 } CURSOR_T;
 
 #define MAX_TRACE  36
@@ -46,6 +47,7 @@ extern CURSOR_T Cursor[4];
 extern int ic; // selected cursor index
 extern int it; // selected trace index
 extern int xgrid, ygrid;
+extern int width, infowidth;
 extern bool myUpdate, zooming, zoomMode;
 extern bool fftMode, xLog, yLog;
 extern CPoint zoomA, zoomB;
@@ -70,6 +72,7 @@ extern void SaveAsCSV();
 extern void RegisterMru(char *fn);
 extern void Print();
 extern void ResetZoom();
+extern void getCursorPos();
 extern void UpdateStatus(void);
 extern bool GetReg(char *name, char *key, char *buffer, int *buflen, int regtype);
 extern bool SetReg(char *name, char *key, char *val, int buflen, int regtype);

@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PM3394A", "PM3394A.vcproj", "{E6E9C756-3974-4F70-908F-3BB381E05C09}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PM33XX", "..\PM33XX\PM33XX.vcproj", "{8AE4182E-A23E-41E1-A009-1A51C02DA144}"
+EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
@@ -17,8 +15,16 @@ Global
 		{E6E9C756-3974-4F70-908F-3BB381E05C09}.Debug|Win32.Build.0 = Debug|Win32
 		{E6E9C756-3974-4F70-908F-3BB381E05C09}.Release|Win32.ActiveCfg = Release|Win32
 		{E6E9C756-3974-4F70-908F-3BB381E05C09}.Release|Win32.Build.0 = Release|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Debug|Win32.Build.0 = Debug|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Release|Win32.ActiveCfg = Release|Win32
+		{8AE4182E-A23E-41E1-A009-1A51C02DA144}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
