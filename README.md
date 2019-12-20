@@ -1,3 +1,11 @@
+<!--
+  Title: PM3394 CombiScope Software
+  Description: A User Interface software for the Fluke/Phillips PM33XX CombiScope series
+  Author: Edzko Smid
+  -->
+
+<meta name='keywords' content='Fluke, Phillips, CombiScope, PM3394, PM33XX'>
+
 # PM3394 CombiScope Software
 Software to interface with the PM33XX / PM3394 Fluke Phillips Combiscopes
 
@@ -22,7 +30,7 @@ Click "copy" to add a snapshot of the current view on the clipboard. Paste in an
 Or print the current view directly to a printer.
 
 Use any of the FFT Windowing functions to view the Spectrum analysis of the signals. You can choose to set X and/or Y axis in log or linear scale.
-
+    
 ## References
 
 
