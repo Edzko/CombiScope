@@ -2727,27 +2727,103 @@ void CChildView::OnFft()
 	UpdateWindow();
 }
 
-void CChildView::OnFftWnd1() {}
-void CChildView::OnFftWnd2() {}
-void CChildView::OnFftWnd3() {}
-void CChildView::OnFftWnd4() {}
-void CChildView::OnFftWnd5() {}
-void CChildView::OnFftWnd6() {}
-void CChildView::OnFftWnd7() {}
-void CChildView::OnFftWnd8() {}
-void CChildView::OnFftWnd9() {}
-void CChildView::OnFftWnd10() {}
-void CChildView::OnFftWnd11() {}
-void CChildView::OnFftWnd12() {}
-void CChildView::OnFftWnd13() {}
-void CChildView::OnFftWnd14() {}
-void CChildView::OnFftWnd15() {}
+void CChildView::OnFftWnd1() {
+	wndFcn = 1; 
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd2() {
+	wndFcn = 2;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd3() {
+	wndFcn = 3;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd4() {
+	wndFcn = 4;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd5() {
+	wndFcn = 5;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd6() {
+	wndFcn = 6;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd7() {
+	wndFcn = 7;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd8() {
+	wndFcn = 8;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd9() {
+	wndFcn = 9;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd10() {
+	wndFcn = 10;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd11() {
+	wndFcn = 11;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd12() {
+	wndFcn = 12;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd13() {
+	wndFcn = 13;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd14() {
+	wndFcn = 14;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
+void CChildView::OnFftWnd15() {
+	wndFcn = 15;
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
+}
 
 void CChildView::OnXlog()
 {
 	xLog = !xLog;
-	Invalidate(1);
-	UpdateWindow();
+	if (fftMode) {
+		fftMode = false; OnFft();
+	}
 }
 
 

@@ -34,6 +34,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CMainFrame::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMainFrame::OnFilePrintPreview)
 	ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMainFrame::OnUpdateFilePrintPreview)
+	ON_UPDATE_COMMAND_UI(ID_FFT, &CMainFrame::OnUpdateFft)
+	ON_UPDATE_COMMAND_UI(ID_XLOG, &CMainFrame::OnUpdateXlog)
+	ON_UPDATE_COMMAND_UI(ID_YLOG, &CMainFrame::OnUpdateYlog)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -420,6 +423,21 @@ void CMainFrame::UpdateStatus()
 
 	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(4);
 	pPane->SetText(m_wndView.lfn.lpstrFile);
+}
 
-	
+void CMainFrame::OnUpdateFft(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndView.fftMode);
+}
+
+
+void CMainFrame::OnUpdateXlog(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndView.xLog);
+}
+
+
+void CMainFrame::OnUpdateYlog(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndView.yLog);
 }

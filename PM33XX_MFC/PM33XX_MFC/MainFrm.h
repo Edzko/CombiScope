@@ -65,6 +65,10 @@ protected:
 	afx_msg void OnUpdateFilePrintPreview(CCmdUI* pCmdUI);
 	DECLARE_MESSAGE_MAP()
 
+public:
+	afx_msg void OnUpdateFft(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateXlog(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateYlog(CCmdUI *pCmdUI);
 };
 
 
