@@ -69,6 +69,7 @@ public:
 	char CommPort[50];
 	char BaudRates[5][20];
 	char pmid[200];
+	int progress;
 	int SelectedBaudrate, SelectedComport, ComData[50];
 
 	int left, top, width, height, infowidth;
@@ -132,22 +133,9 @@ public:
 	unsigned int NumberOfBitsNeeded(unsigned int p_nSamples);
 	unsigned int ReverseBits(unsigned int p_nIndex, unsigned int p_nBits);
 
-	void OnFftWnd1();
-	void OnFftWnd2();
-	void OnFftWnd3();
-	void OnFftWnd4();
-	void OnFftWnd5();
-	void OnFftWnd6();
-	void OnFftWnd7();
-	void OnFftWnd8();
-	void OnFftWnd9();
-	void OnFftWnd10();
-	void OnFftWnd11();
-	void OnFftWnd12();
-	void OnFftWnd13();
-	void OnFftWnd14();
-	void OnFftWnd15();
-
+	void OnFftWnd(UINT id);
+	void OnChannel(UINT id);
+	void OnMemory(UINT id);
 
 // Overrides
 	protected:
@@ -170,11 +158,6 @@ public:
 	afx_msg void OnConfig();
 	afx_msg void OnGettraces();
 	afx_msg void OnRun();
-	afx_msg void OnCheck7();
-	afx_msg void OnCheck8();
-	afx_msg void OnCheck9();
-	afx_msg void OnCheck10();
-	afx_msg void OnButton8();
 	afx_msg void OnColor();
 	afx_msg void OnFftwindow();
 	afx_msg void OnC0();
@@ -201,7 +184,6 @@ public:
 	afx_msg void OnFilePrint();
 	afx_msg void OnFileSaveAs();
 	afx_msg void OnFileSave();
-	afx_msg void OnButton12();
 	afx_msg void OnFft();
 	afx_msg void OnXlog();
 	afx_msg void OnYlog();
@@ -214,7 +196,6 @@ public:
 	afx_msg void OnFileMruFile7();
 	afx_msg void OnFileMruFile8();
 	afx_msg void OnFileMruFile9();
-	afx_msg void OnUpdateXlog(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFileMruFile1(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFileMruFile2(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFileMruFile3(CCmdUI *pCmdUI);
@@ -224,6 +205,5 @@ public:
 //	afx_msg void OnUpdateFileMruFile7(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFileMruFile8(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFileMruFile9(CCmdUI *pCmdUI);
-	afx_msg void OnUpdateConnect(CCmdUI *pCmdUI);
 };
 

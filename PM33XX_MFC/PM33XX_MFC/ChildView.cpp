@@ -141,12 +141,11 @@ CChildView::CChildView()
 	strcpy_s(BaudRates[3], 20, "38400");
 	strcpy_s(BaudRates[4], 20, "57600");
 
-	
-
 	strcpy_s(pmid, 200, "--");
-
 	
-	SelectedBaudrate = 4;
+	SelectedBaudrate = 3;
+	SelectedComport = 0;
+	progress = 0;
 }
 
 CChildView::~CChildView()
@@ -165,7 +164,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_CLOSE()
 	ON_WM_CHAR()
 	ON_WM_ERASEBKGND()
-	ON_WM_TIMER()
+	
 	ON_COMMAND(ID_CONNECT, &CChildView::OnConnect)
 	ON_COMMAND(ID_HARDCOPY, &CChildView::OnHardcopy)
 	ON_COMMAND(ID_PORT, &CChildView::OnPort)
@@ -193,21 +192,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_COMMAND(ID_FFT, &CChildView::OnFft)
 	ON_COMMAND(ID_XLOG, &CChildView::OnXlog)
 	ON_COMMAND(ID_YLOG, &CChildView::OnYlog)
-	ON_COMMAND(ID_FLTWND1, &CChildView::OnFftWnd1)
-	ON_COMMAND(ID_FLTWND2, &CChildView::OnFftWnd2)
-	ON_COMMAND(ID_FLTWND3, &CChildView::OnFftWnd3)
-	ON_COMMAND(ID_FLTWND4, &CChildView::OnFftWnd4)
-	ON_COMMAND(ID_FLTWND5, &CChildView::OnFftWnd5)
-	ON_COMMAND(ID_FLTWND6, &CChildView::OnFftWnd6)
-	ON_COMMAND(ID_FLTWND7, &CChildView::OnFftWnd7)
-	ON_COMMAND(ID_FLTWND8, &CChildView::OnFftWnd8)
-	ON_COMMAND(ID_FLTWND9, &CChildView::OnFftWnd9)
-	ON_COMMAND(ID_FLTWND10, &CChildView::OnFftWnd10)
-	ON_COMMAND(ID_FLTWND11, &CChildView::OnFftWnd11)
-	ON_COMMAND(ID_FLTWND12, &CChildView::OnFftWnd12)
-	ON_COMMAND(ID_FLTWND13, &CChildView::OnFftWnd13)
-	ON_COMMAND(ID_FLTWND14, &CChildView::OnFftWnd14)
-	ON_COMMAND(ID_FLTWND15, &CChildView::OnFftWnd15)
+	ON_COMMAND_RANGE(ID_FLTWND1,ID_FLTWND15, &CChildView::OnFftWnd)
 	ON_COMMAND(ID_FILE_MRU_FILE1, &CChildView::OnFileMruFile1)
 	ON_COMMAND(ID_FILE_MRU_FILE2, &CChildView::OnFileMruFile2)
 	ON_COMMAND(ID_FILE_MRU_FILE3, &CChildView::OnFileMruFile3)
@@ -217,8 +202,9 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_COMMAND(ID_FILE_MRU_FILE7, &CChildView::OnFileMruFile7)
 	ON_COMMAND(ID_FILE_MRU_FILE8, &CChildView::OnFileMruFile8)
 	ON_COMMAND(ID_FILE_MRU_FILE9, &CChildView::OnFileMruFile9)
-	ON_UPDATE_COMMAND_UI(ID_XLOG, &CChildView::OnUpdateXlog)
-	ON_UPDATE_COMMAND_UI(ID_CONNECT, &CChildView::OnUpdateConnect)
+
+	ON_COMMAND_RANGE(ID_CH1, ID_CH4, &CChildView::OnChannel)
+	ON_COMMAND_RANGE(ID_M1, ID_M16, &CChildView::OnMemory)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE1, &CChildView::OnUpdateFileMruFile1)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE2, &CChildView::OnUpdateFileMruFile2)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE3, &CChildView::OnUpdateFileMruFile3)
@@ -228,6 +214,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE7, &CChildView::OnUpdateFileMruFile7)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE8, &CChildView::OnUpdateFileMruFile8)
 //	ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE9, &CChildView::OnUpdateFileMruFile9)
+
 END_MESSAGE_MAP()
 
 
@@ -397,6 +384,8 @@ void CChildView::Draw(HDC dc0, int CID)
 		height = dy - 50;
 #else
 		dc = dc0;
+		dx = cwnd.right - cwnd.left;
+		dy = cwnd.bottom - cwnd.top;
 		left = cwnd.left + 25;
 		top = cwnd.top;
 		width = cwnd.right - cwnd.left - 45;
@@ -1166,7 +1155,7 @@ BOOL CChildView::InitCommPort(int CommPortNum, int baud,
 	}
 	CommTimeouts.ReadIntervalTimeout = 500;
 	CommTimeouts.ReadTotalTimeoutMultiplier = 0;
-	CommTimeouts.ReadTotalTimeoutConstant = 0;
+	CommTimeouts.ReadTotalTimeoutConstant = 1000;
 	CommTimeouts.WriteTotalTimeoutMultiplier = 1;
 	CommTimeouts.WriteTotalTimeoutConstant = 1;
 	fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
@@ -1188,8 +1177,7 @@ void CChildView::Connect(int port, int baud)
 		CloseHandle(hCommPort);
 		hCommPort = INVALID_HANDLE_VALUE;
 		strcpy_s(pmid, 200, "--");
-		((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateStatus();
-		//g_pFramework->InvalidateUICommand(IDM_CONNECT, UI_INVALIDATIONS_PROPERTY, &UI_PKEY_LargeImage);
+		strcpy_s(CommPort, 50, "");
 	}
 	else
 	{
@@ -1203,9 +1191,9 @@ void CChildView::Connect(int port, int baud)
 			if (nc > 0)
 			{
 				ReadFile(hCommPort, pmid, 200, &nc, NULL);
+				if (pmid[0] == 13) pmid[0] = 32;
+				for (int i = 0; i < 200; i++) if (pmid[i] == 13) pmid[i] = 0;
 				TRACE1("Instrument ID: %s\r\n", &pmid[1]);
-				((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateStatus();
-				//g_pFramework->InvalidateUICommand(IDM_CONNECT, UI_INVALIDATIONS_PROPERTY, &UI_PKEY_LargeImage);
 			}
 			else {
 				CloseHandle(hCommPort);
@@ -1213,6 +1201,7 @@ void CChildView::Connect(int port, int baud)
 			}
 		}
 	}
+	((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateStatus();
 }
 
 void CChildView::OnConnect()
@@ -1295,7 +1284,7 @@ void CChildView::OnHardcopy()
 		sexi.cbSize = sizeof(SHELLEXECUTEINFO);
 		sexi.hwnd = m_hWnd;
 		sexi.fMask = SEE_MASK_NOCLOSEPROCESS;
-		sexi.lpFile = _T("..\\HPGL\\hp2xx.exe");
+		sexi.lpFile = _T("HPGL\\hp2xx.exe");
 		sexi.lpParameters = ccmd;
 		sexi.nShow = SW_HIDE;
 		//sexi.nShow = SW_SHOW;
@@ -1380,15 +1369,20 @@ void CChildView::GetTrace(int iTrace)
 	int traceGroup = iTrace / 4;
 	int traceRegister = iTrace - 4 * traceGroup + 1;
 
+	CommTimeouts.ReadIntervalTimeout = 1500;
+	CommTimeouts.ReadTotalTimeoutConstant = 10000;
+	fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
+	if (!fSuccess) { return; }
+
 
 	if (iTrace < 4)
 		sprintf_s(cmd, 10, "QW%i\r", traceRegister);
 	else
 		sprintf_s(cmd, 10, "QW%i%i\r", traceGroup, traceRegister);
-	//PurgeComm(hCommPort,PURGE_RXCLEAR | PURGE_TXCLEAR);
-	FlushFileBuffers(hCommPort);
+	PurgeComm(hCommPort,PURGE_RXCLEAR | PURGE_TXCLEAR);
+	//FlushFileBuffers(hCommPort);
 	WriteFile(hCommPort, cmd, (int)strlen(cmd), &nc, NULL);
-	Sleep(100);
+	//Sleep(100);
 	rtn = ReadFile(hCommPort, tdata, 1, &nc, NULL);
 	if (nc == 1) if (tdata[0] == 13)
 		rtn = ReadFile(hCommPort, tdata, 1, &nc, NULL);
@@ -1435,27 +1429,27 @@ void CChildView::GetTrace(int iTrace)
 
 	TRACE1("Header size = %i bytes\r\n", j);
 
-	
-	CommTimeouts.ReadIntervalTimeout = 1500;
-	fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
-	if (!fSuccess) { return; }
-
 	while (nc == blocksize)
 	{
 		rtn = ReadFile(hCommPort, &tdata[di], blocksize, &nc, NULL);
 		di += nc;
 
-		//sprintf_s(sstr, 20, "Reading %i %%\r\n", 50 * di / trace[iTrace].ntrace);
+		progress = 50 * di / trace[iTrace].ntrace;
+		//sprintf_s(sstr, 20, "Reading %i %%\r\n", );
 		//DrawStatusText(hsDC, &sr, sstr, 0);
 		((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateStatus();
 	}
 
 	CommTimeouts.ReadIntervalTimeout = 500;
+	CommTimeouts.ReadTotalTimeoutConstant = 1000;
 	fSuccess = SetCommTimeouts(hCommPort, &CommTimeouts);
 
 #ifdef _DEBUG
 	FILE *fid;
-	fopen_s(&fid, "c:/temp/pm3394_data.bin", "w");
+	char fn[500];
+	GetEnvironmentVariable("TEMP", fn, 500);
+	strcat_s(fn, 500, "pm3394_data.bin");
+	fopen_s(&fid, fn, "w");
 	fwrite(tdata, 1, nc, fid);
 	fclose(fid);
 #endif
@@ -1492,6 +1486,7 @@ void CChildView::GetTrace(int iTrace)
 	viewTmin = 0.0;
 	viewTmax = xgrid * dt;
 	fftMode = false;
+	progress = 0;
 	// update fft button
 }
 
@@ -1873,7 +1868,7 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		zoomB = mpoint;
 		myUpdate = true;
-		Invalidate(1);
+		Invalidate(0);
 		UpdateWindow();
 	}
 	else {
@@ -1882,7 +1877,7 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 			if (ic < 2) Cursor[ic].pos = mpoint.y; else Cursor[ic].pos = mpoint.x;
 			getCursorValue();
 			myUpdate = true;
-			Invalidate(1);
+			Invalidate(0);
 			UpdateWindow();
 		}
 	}
@@ -2176,12 +2171,12 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
-#ifdef _USEDOUBLEBUFFER_
+#if _USEDOUBLEBUFFER_
 	if (myUpdate)
 		return FALSE;
 	else
 #endif
-		return CWnd::OnEraseBkgnd(pDC);
+	return CWnd::OnEraseBkgnd(pDC);
 }
 
 unsigned int CChildView::ReverseBits(unsigned int p_nIndex, unsigned int p_nBits)
@@ -2727,96 +2722,13 @@ void CChildView::OnFft()
 	UpdateWindow();
 }
 
-void CChildView::OnFftWnd1() {
-	wndFcn = 1; 
+void CChildView::OnFftWnd(UINT id) {
+	wndFcn = id - ID_FLTWND1 + 1;
 	if (fftMode) {
 		fftMode = false; OnFft();
 	}
 }
-void CChildView::OnFftWnd2() {
-	wndFcn = 2;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd3() {
-	wndFcn = 3;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd4() {
-	wndFcn = 4;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd5() {
-	wndFcn = 5;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd6() {
-	wndFcn = 6;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd7() {
-	wndFcn = 7;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd8() {
-	wndFcn = 8;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd9() {
-	wndFcn = 9;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd10() {
-	wndFcn = 10;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd11() {
-	wndFcn = 11;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd12() {
-	wndFcn = 12;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd13() {
-	wndFcn = 13;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd14() {
-	wndFcn = 14;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
-void CChildView::OnFftWnd15() {
-	wndFcn = 15;
-	if (fftMode) {
-		fftMode = false; OnFft();
-	}
-}
+
 
 void CChildView::OnXlog()
 {
@@ -2896,15 +2808,13 @@ void CChildView::OnFileMruFile9()
 	OpenFile();
 }
 
-void CChildView::OnUpdateXlog(CCmdUI *pCmdUI)
+
+void CChildView::OnChannel(UINT id)
 {
-	pCmdUI->SetCheck(xLog);
+	int iTrace = id - ID_CH1;
+	trace[iTrace].Enable = !trace[iTrace].Enable;
 }
 
-void CChildView::OnUpdateConnect(CCmdUI *pCmdUI)
+void CChildView::OnMemory(UINT id)
 {
-	if (hCommPort)
-		((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateButtonImg(ID_CONNECT, 5);
-	else
-		((CMainFrame*)AfxGetApp()->m_pMainWnd)->UpdateButtonImg(ID_CONNECT, 6);
 }

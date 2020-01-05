@@ -32,7 +32,8 @@ public:
 	void UpdateButtonImg(int id, int idx);
 	DWORD GetSelectedColor();
 	void SetSelectedColor();
-
+	HANDLE hCommPort;
+	void OnUpdateChannel(CCmdUI *pCmdUI);
 // Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -69,6 +70,8 @@ public:
 	afx_msg void OnUpdateFft(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateXlog(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateYlog(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateConnect(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateZoom(CCmdUI *pCmdUI);
 };
 
 

@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_SETFOCUS()
 	ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_CH1,ID_CH4, &CMainFrame::OnUpdateChannel)
 	ON_COMMAND(ID_FILE_PRINT, &CMainFrame::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CMainFrame::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMainFrame::OnFilePrintPreview)
@@ -37,13 +38,15 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_UPDATE_COMMAND_UI(ID_FFT, &CMainFrame::OnUpdateFft)
 	ON_UPDATE_COMMAND_UI(ID_XLOG, &CMainFrame::OnUpdateXlog)
 	ON_UPDATE_COMMAND_UI(ID_YLOG, &CMainFrame::OnUpdateYlog)
+	ON_UPDATE_COMMAND_UI(ID_CONNECT, &CMainFrame::OnUpdateConnect)
+	ON_UPDATE_COMMAND_UI(ID_ZOOM, &CMainFrame::OnUpdateZoom)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
 
 CMainFrame::CMainFrame() noexcept
 {
-	// TODO: add member initialization code here
+	hCommPort = INVALID_HANDLE_VALUE;
 	theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_OFF_2007_AQUA);
 }
 
@@ -99,6 +102,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	pBaud->SelectItem(3);
 
 	GetComPorts();
+	strcpy_s(m_wndView.CommPort,50,"");
 
 	rType = REG_SZ;
 	nc = MAX_FILENAME;
@@ -126,13 +130,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//bNameValid = strTitlePane2.LoadString(IDS_STATUS_PANE2);
 	//ASSERT(bNameValid);
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE1, "", TRUE), "");
+	m_wndStatusBar.AddSeparator();
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE2, "", TRUE), "");
+	m_wndStatusBar.AddSeparator();
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE3, "", TRUE), "");
+	m_wndStatusBar.AddSeparator();
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE4, "", TRUE), "");
+	m_wndStatusBar.AddSeparator();
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE5, "", TRUE), "");
+	m_wndStatusBar.AddSeparator();
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE6, "", TRUE), "");
 
-	m_wndStatusBar.AddExtendedElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE2, "", TRUE), "");
+	m_wndStatusBar.AddExtendedElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE7, "", TRUE), "");
 
 	// enable Visual Studio 2005 style docking window behavior
 	CDockingManager::SetDockingMode(DT_SMART);
@@ -140,6 +149,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
 	// set the visual manager and style based on persisted value
 	OnApplicationLook(theApp.m_nAppLook);
+	
+	UpdateStatus();
 
 	return 0;
 }
@@ -148,8 +159,10 @@ void CMainFrame::UpdateButtonImg(int id, int idx)
 {
 	CMFCRibbonButton *pBut = (CMFCRibbonButton*)m_wndRibbonBar.FindByID(id);
 	pBut->SetImageIndex(idx, 1);
-	m_wndRibbonBar.Invalidate();
-	m_wndRibbonBar.UpdateWindow();
+	
+		m_wndRibbonBar.Invalidate(0);
+		m_wndRibbonBar.UpdateWindow();
+	
 }
 
 DWORD CMainFrame::GetSelectedColor()
@@ -404,25 +417,40 @@ void CMainFrame::UpdateStatus()
 	//m_wndStatusBar.AdjustLayout();
 
 	CMFCRibbonStatusBarPane *pPane;
+
 	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(0);
 
 	CString txt;
+	
 	if (m_wndView.hCommPort == INVALID_HANDLE_VALUE)
 		pPane->SetText("Not Connected");
 	else
 		pPane->SetText("Connected");
 
-	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(1);
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(2);
 	pPane->SetText(m_wndView.CommPort);
 
-	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(2);
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(4);
 	pPane->SetText(m_wndView.BaudRates[m_wndView.SelectedBaudrate]);
 
-	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(3);
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(6);
+	if (m_wndView.progress == 0) txt = "";
+	else txt.Format("%d %%",m_wndView.progress);
+	
+	pPane->SetText(txt);
+
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(8);
+	pPane->SetText(m_wndView.lfn.lpstrFile);
+
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(10);
+	pPane->SetText("");
+
+	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetExElement(0);
 	pPane->SetText(m_wndView.pmid);
 
-	pPane = (CMFCRibbonStatusBarPane*)m_wndStatusBar.GetElement(4);
-	pPane->SetText(m_wndView.lfn.lpstrFile);
+	m_wndStatusBar.RecalcLayout();
+	m_wndStatusBar.Invalidate();
+	m_wndStatusBar.UpdateWindow();
 }
 
 void CMainFrame::OnUpdateFft(CCmdUI *pCmdUI)
@@ -440,4 +468,27 @@ void CMainFrame::OnUpdateXlog(CCmdUI *pCmdUI)
 void CMainFrame::OnUpdateYlog(CCmdUI *pCmdUI)
 {
 	pCmdUI->SetCheck(m_wndView.yLog);
+}
+
+void CMainFrame::OnUpdateConnect(CCmdUI *pCmdUI)
+{
+	if (m_wndView.hCommPort != hCommPort)
+	{
+		if (m_wndView.hCommPort != INVALID_HANDLE_VALUE)
+			UpdateButtonImg(ID_CONNECT, 5);
+		else
+			UpdateButtonImg(ID_CONNECT, 6);
+		hCommPort = m_wndView.hCommPort;
+	}
+}
+
+
+void CMainFrame::OnUpdateChannel(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndView.trace[pCmdUI->m_nID - ID_CH1].Enable);
+}
+
+void CMainFrame::OnUpdateZoom(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndView.zoomMode);
 }
