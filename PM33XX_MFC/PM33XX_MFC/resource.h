@@ -20,7 +20,7 @@
 #define ID_STATUSBAR_PANE7              125
 #define IDS_STATUS_PANE1                126
 #define IDS_STATUS_PANE2                127
-#define IDR_MAINFRAME                   128
+#define IDR_MAINFRAME                   131
 #define IDR_MAINFRAME_256               129
 #define IDR_PM33XXMFCTYPE               130
 #define IDR_PASTE_MENU                  151
@@ -42,6 +42,8 @@
 #define IDR_RIBBON                      307
 #define IDD_WELCOME                     311
 #define IDB_PM3394                      313
+#define IDI_PM3394                      128
+#define IDR_HELP_MENU                   318
 #define IDC_ABOUTTXT1                   1001
 #define IDC_ABOUTTXT2                   1002
 #define ID_WRITE_PASTEASHYPERLINK       32770
@@ -108,7 +110,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        315
+#define _APS_NEXT_RESOURCE_VALUE        319
 #define _APS_NEXT_COMMAND_VALUE         32866
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           310

@@ -1899,7 +1899,7 @@ BOOL CChildView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	tviewVmax = viewVmax - (double)(viewVmax - viewVmin) / height * pt.y * zDelta * 0.0005;
 
 	if (tviewTmin < 0.0) tviewTmin = 0.0;
-	if (tviewTmax > 1.0) tviewTmax = 1.0;
+	if (tviewTmax > xgrid * dt) tviewTmax = xgrid * dt;
 	if (tviewVmin < ygrid / -2.0*deltay) tviewVmin = ygrid / -2.0*deltay;
 	if (tviewVmax > ygrid / 2.0*deltay) tviewVmax = ygrid / 2.0*deltay;
 
