@@ -45,25 +45,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2B93BD479DC44B72A238D0639F935020"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_35186A72E8F0424FA64327D7B3029EC1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_56A32A25C99F4F00A76029371E97688C"
+        "MsmKey" = "8:_4D922AD3F9CF44CFA4AF16AD59E74662"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_59A52A29FCCD403EBD733B279D5F4CA0"
+        "MsmKey" = "8:_56A32A25C99F4F00A76029371E97688C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -115,6 +109,12 @@
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_F9F940100F1948E28CAA1FDB0E7F070F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -133,6 +133,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -149,6 +157,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -310,26 +326,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59A52A29FCCD403EBD733B279D5F4CA0"
-            {
-            "SourcePath" = "8:F:\\Projects\\PM3394A\\CombiScope\\PM33XX_MFC\\PM33XX_MFC\\img\\COMBI.ICO"
-            "TargetName" = "8:COMBI.ICO"
-            "Tag" = "8:"
-            "Folder" = "8:_91D3FBF551DA478789CA029318D17226"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61405345642E4BFDB43EC28DE534F244"
             {
             "SourcePath" = "8:..\\..\\HPGL\\pdflib5.dll"
@@ -474,6 +470,26 @@
             {
             "SourcePath" = "8:setup.ico"
             "TargetName" = "8:setup.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_91D3FBF551DA478789CA029318D17226"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9F940100F1948E28CAA1FDB0E7F070F"
+            {
+            "SourcePath" = "8:..\\PM33XX_MFC\\res\\COMBI.ICO"
+            "TargetName" = "8:COMBI.ICO"
             "Tag" = "8:"
             "Folder" = "8:_91D3FBF551DA478789CA029318D17226"
             "Condition" = "8:"
@@ -686,10 +702,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_2B93BD479DC44B72A238D0639F935020"
+            "Target" = "8:_4D922AD3F9CF44CFA4AF16AD59E74662"
             "Folder" = "8:_3A8E814083144717BB27E9976363A9D6"
             "WorkingFolder" = "8:_91D3FBF551DA478789CA029318D17226"
-            "Icon" = "8:_59A52A29FCCD403EBD733B279D5F4CA0"
+            "Icon" = "8:_F9F940100F1948E28CAA1FDB0E7F070F"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8C6651F0AF354E34AA6D30F320058A04"
@@ -700,10 +716,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_2B93BD479DC44B72A238D0639F935020"
+            "Target" = "8:_4D922AD3F9CF44CFA4AF16AD59E74662"
             "Folder" = "8:_C1145B99F8234E39919BF14153C0C54A"
             "WorkingFolder" = "8:_91D3FBF551DA478789CA029318D17226"
-            "Icon" = "8:_59A52A29FCCD403EBD733B279D5F4CA0"
+            "Icon" = "8:_F9F940100F1948E28CAA1FDB0E7F070F"
             "Feature" = "8:"
             }
         }
@@ -1211,7 +1227,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2B93BD479DC44B72A238D0639F935020"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4D922AD3F9CF44CFA4AF16AD59E74662"
             {
             "SourcePath" = "8:..\\Debug\\PM33XX.exe"
             "TargetName" = "8:"

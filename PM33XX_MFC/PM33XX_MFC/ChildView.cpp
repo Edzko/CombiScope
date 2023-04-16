@@ -328,8 +328,8 @@ void CChildView::Draw(HDC dc0, int CID)
 	{
 		GetClipBox(dc0, &cwnd);
 
-		cwnd.left += 2;
-		cwnd.top += 10;
+		//cwnd.left += 2;
+		//cwnd.top += 10;
 		fnth = 12;
 		infowidth = 200;
 		yline = 15;
@@ -1275,10 +1275,43 @@ void CChildView::OnHardcopy()
 	if (hCommPort != INVALID_HANDLE_VALUE)
 #endif
 	{
+#define HPBUFLEN 100000
+		char hpdata[HPBUFLEN], hpdatac[HPBUFLEN], * pd = hpdata, * pu = 0, c[] = ";SP2", *pc = 0;
+		DWORD nc;
+		// Update colors for Traces
+		// find all commands "PD" (Pen Down)
+		// if next "PD" is many values further, then this is a trace
+		// and we insert "SPx;" (Select Pen) in front of the "PD"
+		HANDLE hFile1 = CreateFile(_T("pm33xx.hgl"), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		bool success = ReadFile(hFile1, hpdata, HPBUFLEN, &nc, NULL);
+		CloseHandle(hFile1);
+		HANDLE hFile2 = CreateFile(_T("pm33xxc.hgl"), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+		strcpy_s(hpdatac, HPBUFLEN, hpdata);
+		while (true) {
+			pd = strstr(pd, ";PD");
+			if (pc == 0) pc = hpdatac+(pd-hpdata);
+			if (pd == NULL) break;
+			pu = strstr(pd+1, ";PD");
+			if (pu - pd > 50) {
+				strcpy_s(pc, HPBUFLEN, c);
+				c[3]++;
+				pc += 4;
+			}
+			else {
+				strcpy_s(pc, HPBUFLEN, ";SP1");
+				pc += 4;
+			}
+			strcpy_s(pc, HPBUFLEN, pd);
+			pc += pu - pd;
+			pd++;
+		}
+		WriteFile(hFile2, hpdatac, strlen(hpdatac), &nc, NULL);
+		CloseHandle(hFile2);
 		GetWindowRect(&rc);
+
 		// Convert HPGL file to PNG. Uses external command hp2xx.exe
 		s = (rc.right - rc.left) / 2;
-		sprintf_s(ccmd, 200, "-m png -c 1234567 -r270 -h%i -w%i pm33xx.hgl", s, s);
+		sprintf_s(ccmd, 200, "-m png -c 1234567 -r270 -h%i -w%i pm33xxc.hgl", s, s);
 		TRACE1(">hp2xx.exe %s\r\n", ccmd);
 		SHELLEXECUTEINFO sexi = { 0 };
 		sexi.cbSize = sizeof(SHELLEXECUTEINFO);
@@ -1295,7 +1328,7 @@ void CChildView::OnHardcopy()
 		}
 
 		// load PNG bitmap file
-		if (img.Load(_T("pm33xx.png")) == NULL)
+		if (img.Load(_T("pm33xxc.png")) == NULL)
 			hBmp = img.Detach();
 
 		// Display bitmap in Dialog Window
@@ -2034,21 +2067,23 @@ void CChildView::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 	// Create Enhanced Metafile
 	hScreen = GetDC();
-	mfdc = CreateEnhMetaFile((HDC)dc, NULL, NULL, "FLUKE\0COMBISCOPE\0\0");
+	mfdc = CreateEnhMetaFile(dc->GetSafeHdc(), NULL, NULL, "FLUKE\0COMBISCOPE\0\0");
 	if (mfdc) {
 		myUpdate = false;
 		Draw(mfdc, 1);
 	}
 
 	// Create DIB bitmap file
+	//bdc = CDC::FromHandle(dc->m_hDC);
 	bdc = new CDC();
-	bdc->CreateCompatibleDC(dc);
-	bitmap = CreateCompatibleBitmap((HDC)bdc, 1024, 768);
+	bdc->CreateCompatibleDC(GetDC());
+	bitmap = CreateCompatibleBitmap(bdc->m_hDC, 1024, 768);
 	bdc->SelectObject(bitmap);
 	bdc->FillRect(&wndrect, &wndBrush);
 	myUpdate = false;
-	Draw((HDC)bdc,1);
+	Draw(bdc->m_hDC,1);
 
+	// Create CSV table with signal values 
 	HLOCAL hTrace;
 	char pTrace[CPYLEN],pTraceLine[100];
 	sprintf_s(pTrace, CPYLEN, "Time [%s]\t", tunit);
