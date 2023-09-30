@@ -21,6 +21,7 @@
 #define new DEBUG_NEW
 #endif
 
+extern CMFCRibbonBar* ribbon;
 
 // CChildView
 
@@ -1181,7 +1182,7 @@ void CChildView::Connect(int port, int baud)
 	}
 	else
 	{
-
+		
 		if (InitCommPort(port, baud, 8, 0, 1)) {
 			FlushFileBuffers(hCommPort);
 			memset(iddata, 0, 1000);
@@ -1218,6 +1219,7 @@ void CChildView::OnHardcopy()
 	CImage img;
 	DWORD rtn = 0;
 	BOOL fSuccess;
+	
 
 	//trace[0].ntrace = 0;
 	if (hCommPort != INVALID_HANDLE_VALUE)
@@ -1276,7 +1278,7 @@ void CChildView::OnHardcopy()
 #endif
 	{
 #define HPBUFLEN 100000
-		char hpdata[HPBUFLEN], hpdatac[HPBUFLEN], * pd = hpdata, * pu = 0, c[] = ";SP2", *pc = 0;
+		char hpdata[HPBUFLEN], hpdatac[HPBUFLEN]; // , * pd = hpdata, * pu = 0, c[] = ";SP2", * pc = 0;
 		DWORD nc;
 		// Update colors for Traces
 		// find all commands "PD" (Pen Down)
@@ -1285,28 +1287,48 @@ void CChildView::OnHardcopy()
 		HANDLE hFile1 = CreateFile(_T("pm33xx.hgl"), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		bool success = ReadFile(hFile1, hpdata, HPBUFLEN, &nc, NULL);
 		CloseHandle(hFile1);
-		HANDLE hFile2 = CreateFile(_T("pm33xxc.hgl"), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-		strcpy_s(hpdatac, HPBUFLEN, hpdata);
-		while (true) {
-			pd = strstr(pd, ";PD");
-			if (pc == 0) pc = hpdatac+(pd-hpdata);
-			if (pd == NULL) break;
-			pu = strstr(pd+1, ";PD");
-			if (pu - pd > 50) {
-				strcpy_s(pc, HPBUFLEN, c);
-				c[3]++;
-				pc += 4;
+		memset(hpdatac, 0, HPBUFLEN);
+		if (1) {
+			HANDLE hFile2 = CreateFile(_T("pm33xxc.hgl"), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+			memcpy_s(hpdatac, HPBUFLEN, hpdata, nc);
+			int k = 0;
+			char c = '2';
+			for (int i = 0; i < nc; i++) {
+				hpdatac[k++] = hpdata[i];
+				if (strncmp(&hpdata[i], ";PD",3)==0) {
+					char* q = strstr(&hpdata[i + 1], ";PD");
+					if (q > 0) {
+						hpdatac[k++] = ';';
+						hpdatac[k++] = 'S';
+						hpdatac[k++] = 'P';
+						if (q -  hpdata - i > 50)
+							hpdatac[k++] = c++;
+						else
+							hpdatac[k++] = '1';
+					}						
+				}
 			}
-			else {
-				strcpy_s(pc, HPBUFLEN, ";SP1");
-				pc += 4;
-			}
-			strcpy_s(pc, HPBUFLEN, pd);
-			pc += pu - pd;
-			pd++;
+			//	if (pc == 0) pc = hpdatac + (pd - hpdata);
+			//	if (pd == NULL) break;
+			//	pu = strstr(pd + 1, ";PD");
+			//	if (pu - pd > 50) {
+			//		strcpy_s(pc, HPBUFLEN, c);
+			//		c[3]++;
+			//		pc += 4;
+			//		TRACE1("Found trace; increment color to %s\r\n", c);
+			//	}
+			//	else {
+			//		strcpy_s(pc, HPBUFLEN, ";SP1");
+			//		pc += 4;
+			//		TRACE("Found text; set black\r\n");
+			//	}
+			//	strcpy_s(pc, HPBUFLEN, pd);
+			//	pc += pu - pd;
+			//	pd++;
+			//}
+			WriteFile(hFile2, hpdatac, strlen(hpdatac), &nc, NULL);
+			CloseHandle(hFile2);
 		}
-		WriteFile(hFile2, hpdatac, strlen(hpdatac), &nc, NULL);
-		CloseHandle(hFile2);
 		GetWindowRect(&rc);
 
 		// Convert HPGL file to PNG. Uses external command hp2xx.exe
@@ -1341,12 +1363,15 @@ void CChildView::OnHardcopy()
 void CChildView::OnPort()
 {
 	// TODO: Add your command handler code here
+	CMFCRibbonComboBox* pCom = (CMFCRibbonComboBox*)ribbon->FindByID(ID_PORT);
+	SelectedComport = pCom->GetCurSel();
 }
 
 
 void CChildView::OnBaud()
 {
-	// TODO: Add your command handler code here
+	CMFCRibbonComboBox* pBaud = (CMFCRibbonComboBox*)ribbon->FindByID(ID_BAUD);
+	SelectedBaudrate = pBaud->GetCurSel();
 }
 
 

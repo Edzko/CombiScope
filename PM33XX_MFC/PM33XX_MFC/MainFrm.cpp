@@ -21,6 +21,7 @@
 #define new DEBUG_NEW
 #endif
 
+CMFCRibbonBar* ribbon;
 // CMainFrame
 
 IMPLEMENT_DYNAMIC(CMainFrame, CFrameWndEx)
@@ -88,6 +89,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndRibbonBar.Create(this);
 	m_wndRibbonBar.LoadFromResource(IDR_RIBBON);
+	ribbon = &m_wndRibbonBar;
 
 	if (!m_wndStatusBar.Create(this))
 	{
