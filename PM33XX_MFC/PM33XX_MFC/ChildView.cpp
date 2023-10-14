@@ -331,6 +331,12 @@ void CChildView::Draw(HDC dc0, int CID)
 
 		//cwnd.left += 2;
 		//cwnd.top += 10;
+
+		cwnd.top = 0;
+		cwnd.bottom = 500;
+		cwnd.left = 0;
+		cwnd.right = 1000;
+
 		fnth = 12;
 		infowidth = 200;
 		yline = 15;
@@ -372,26 +378,30 @@ void CChildView::Draw(HDC dc0, int CID)
 
 	}
 	else {
-#if _USEDOUBLEBUFFER_
-		dc = CreateCompatibleDC(dc0);
-		dx = cwnd.right - cwnd.left;
-		dy = cwnd.bottom - cwnd.top;
-		dcbmp = CreateCompatibleBitmap(dc0, dx, dy);
-		SelectObject(dc, dcbmp);
+//#if _USEDOUBLEBUFFER_
+		if (CID != 1) {
+			dc = CreateCompatibleDC(dc0);
+			dx = cwnd.right - cwnd.left;
+			dy = cwnd.bottom - cwnd.top;
+			dcbmp = CreateCompatibleBitmap(dc0, dx, dy);
+			SelectObject(dc, dcbmp);
 
-		left = 40;
-		top = 5;
-		width = dx - left - 20;
-		height = dy - 50;
-#else
-		dc = dc0;
-		dx = cwnd.right - cwnd.left;
-		dy = cwnd.bottom - cwnd.top;
-		left = cwnd.left + 25;
-		top = cwnd.top;
-		width = cwnd.right - cwnd.left - 45;
-		height = cwnd.bottom - cwnd.top - 60;
-#endif
+			left = 40;
+			top = 5;
+			width = dx - left - 20;
+			height = dy - 50;
+		}
+//#else
+		else {
+			dc = dc0;
+			dx = cwnd.right - cwnd.left;
+			dy = cwnd.bottom - cwnd.top;
+			left = cwnd.left + 25;
+			top = cwnd.top;
+			width = cwnd.right - cwnd.left - 45;
+			height = cwnd.bottom - cwnd.top - 60;
+		}
+//#endif
 		if (showInfo)
 		{
 			width -= infowidth;
@@ -1090,16 +1100,18 @@ void CChildView::Draw(HDC dc0, int CID)
 		}
 	}
 
-#if _USEDOUBLEBUFFER_
-	if (hBmp == NULL)
-	{
-		left = cwnd.left;
-		top = cwnd.top;
-		BitBlt(dc0, left, top, dx, dy, dc, 0, 0, SRCCOPY);
-		DeleteObject(dcbmp);
-		DeleteDC(dc);
+//#if _USEDOUBLEBUFFER_
+	if (CID != 1) {
+		if (hBmp == NULL)
+		{
+			left = cwnd.left;
+			top = cwnd.top;
+			BitBlt(dc0, left, top, dx, dy, dc, 0, 0, SRCCOPY);
+			DeleteObject(dcbmp);
+			DeleteDC(dc);
+		}
 	}
-#endif
+//#endif
 }
 
 void CChildView::OnPaint() 

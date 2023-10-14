@@ -19,6 +19,8 @@ This project consists of 3 distinct versions:
 
 Projects have been tested in Windows 7 and Windows 10.
 
+![Screenshot](https://github.com/Edzko/CombiScope/blob/master/PM33XX_MFC/PM33XX_MFC/hlp/gui2.png)
+
 ## Features
 Connect to the PM33XX CombiScope with a Serial COM port.
 Capture a hardcopy or the channel/memory data from the scope to display.
