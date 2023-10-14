@@ -72,11 +72,25 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		RECT rc0, rcw;
 		::GetClientRect(::GetDesktopWindow(), &rc0);
 		h_mApp = CreateDialog(NULL, MAKEINTRESOURCE(IDD_WELCOME), NULL, NULL);
+		
 		::GetClientRect(h_mApp, &rcw);
-		::SetWindowPos(h_mApp, HWND_TOPMOST, (rc0.left + rc0.right - rcw.right) / 2, (rc0.top + rc0.bottom - rcw.bottom) / 2, 0, 0, SWP_NOSIZE);
+		::SetWindowPos(h_mApp, HWND_TOPMOST, (rc0.left + rc0.right - rcw.right) / 2, (rc0.top + rc0.bottom - rcw.bottom) / 2, 800, 484, SWP_NOSIZE);
 		::ShowWindow(h_mApp, SW_SHOW);
-		::UpdateWindow(h_mApp);
+
+		HBITMAP tBitmap, pOldBitmap;
+		HDC tMemdc;
+		tBitmap = LoadBitmap(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_PM3394));
+		HDC dc = ::GetDC(h_mApp);
+		::GetClientRect(h_mApp, &rc0);
+		tMemdc = CreateCompatibleDC(dc);
+		pOldBitmap = (HBITMAP)SelectObject(tMemdc , tBitmap);
+		BitBlt(dc,0, 0, rc0.right, rc0.bottom, tMemdc, 0, 0, SRCCOPY);
+
 		Sleep(2500);
+
+		SelectObject(tMemdc, pOldBitmap);
+		DeleteObject(tBitmap);
+		DeleteDC(tMemdc);
 		::DestroyWindow(h_mApp);
 	}
 

@@ -214,6 +214,7 @@
     <Image Include="res\filelarge.bmp" />
     <Image Include="res\filesmall.bmp" />
     <Image Include="res\main.bmp" />
+    <Image Include="res\PM3394 - Copy.bmp" />
     <Image Include="res\PM3394.bmp" />
     <Image Include="res\PM33XX_MFC.ico" />
     <Image Include="res\Toolbar.bmp" />
